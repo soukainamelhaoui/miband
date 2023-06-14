@@ -1,7 +1,7 @@
-<app-header></app-header>
+<app-header (toggleSideBareForMe)="sideBareToggler()"></app-header>
 
 <mat-drawer-container>
-    <mat-drawer mode="side" opened>
+    <mat-drawer mode="side" [opened]="SideBarOpen">
         <app-sidebar></app-sidebar>
     </mat-drawer>
 
@@ -11,4 +11,4 @@
     </mat-drawer-content>
 </mat-drawer-container>
 
-<app-footer></app-footer>
+<!-- <app-footer></app-footer> -->

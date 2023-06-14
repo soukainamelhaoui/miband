@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-dafault',
@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./dafault.component.scss']
 })
 export class DafaultComponent {
+  SideBarOpen = true;
+  ngOnInit() {}
+sideBareToggler(){
+this.SideBarOpen = !this.SideBarOpen;
 
+}
 }
