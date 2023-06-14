@@ -12,4 +12,8 @@ export class ClientService {
   getClients() {
     return this.http.get(`${this.apiUrl}/listClients`);
   }
+
+  getClientById(id: number) {
+    return this.http.get(`${this.apiUrl}/getClientById/${id}`);
+  }
 }
