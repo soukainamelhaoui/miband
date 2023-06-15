@@ -9,8 +9,10 @@ import { DafaultModule } from './layouts/dafault/dafault.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 
-import {ClientListComponent} from "./Components/client-list.component";
-import {ClientDetailComponent} from "./Components/client-details.component";
+import {ClientListComponent} from "./components/client-list.component";
+import {ClientDetailComponent} from "./components/client-details.component";
+import {HeartbeatChartComponent} from "./components/heartbeat-chart.component";
+import {NgApexchartsModule} from "ng-apexcharts";
 
 
 
@@ -18,7 +20,8 @@ import {ClientDetailComponent} from "./Components/client-details.component";
   declarations: [
     AppComponent,
     ClientListComponent,
-    ClientDetailComponent
+    ClientDetailComponent,
+    HeartbeatChartComponent
 
   ],
   imports: [
@@ -28,6 +31,7 @@ import {ClientDetailComponent} from "./Components/client-details.component";
     HttpClientModule,
     CommonModule,
     AppRoutingModule,
+    NgApexchartsModule
  ],
   providers: [],
   bootstrap: [AppComponent]
