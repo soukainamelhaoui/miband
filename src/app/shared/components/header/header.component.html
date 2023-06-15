@@ -1,13 +1,18 @@
-<mat-toolbar color="primary">
+<mat-toolbar>
     <mat-toolbar-row>
         <button mat-icon-button (click)="toggleSideBar()">
             <mat-icon>menu</mat-icon>
         </button>
-
-        <span> APP LOGO </span>
+        <img src="assets/Logo.jpeg" alt="Acti-sens" class="navbar-logo">
 
         <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
             <ul fxLayout="row" fxLayoutGap="20px">
+                 <li>
+                    <form cForm class="d-flex" role="search">
+                        <input cFormControl type="search" placeholder="Search" aria-label="Search" class="me-2">
+                        <button cButton color="success" variant="outline">Search</button>
+                      </form>
+                </li>
                 <li>
                     <button mat-icon-button>
                         <mat-icon>settings</mat-icon>
@@ -30,6 +35,10 @@
                     </mat-menu>
 
                 </li>
+<<<<<<< HEAD
+               
+=======
+>>>>>>> 10dfd33c1ebb44dc6f5574cdc25a999bfebc250a
             </ul>
         </div>
     </mat-toolbar-row>

@@ -1,25 +1,31 @@
 :host {
-    .mat-icon {
-      vertical-align: middle;
-      margin-right: 20px;
-    }
-    .profile-card {
-      text-align: center;
-      padding: 0px;
-      img {
-        height:180px;
-        width: 279px;
-        object-fit: cover;
-
-      }
-    }
-    .logOut{
-        position: absolute;
-        bottom: 10px; /* Adjust the value as needed to position the button */
-        left: 50%; /* Adjust the value or use margin-left to horizontally center the button */
-        transform: translateX(-50%);
-
-
-    }
-
+  .mat-icon {
+    vertical-align: middle;
+    margin-right: 20px;
   }
+  .profile-card {
+    text-align: center;
+    padding: 0px;
+    img {
+      height:180px;
+      width: 180px;
+      object-fit: cover;
+      border-radius: 50%;
+
+    }
+  }
+  .logOut{
+      position: absolute;
+      bottom: 10px; /* Adjust the value as needed to position the button */
+      left: 50%; /* Adjust the value or use margin-left to horizontally center the button */
+      transform: translateX(-50%);
+
+  
+    }
+  
+  }
+         
+    // .mat-mdc-nav-list, mat-mdc-list-base, mdc-list{
+    //   margin-top: 0 !important;
+    //   padding-top: 0 !important;
+    // }

@@ -1,15 +1,15 @@
-<mat-nav-list>
+<div><mat-nav-list>
+   
     <div class="profile-card">
                <img src="assets/docteur.jpg" alt="Soufiane FADIL">
                <div class="header">
                 <h3>{{name}}</h3> 
                    </div>
     </div>
-
-        <a mat-list-item routerLinkActive="list-item-active" routerLink="">
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/posts">
         <mat-icon>import_contacts</mat-icon>
         Dashboard
-    </a>
+      </a>
 
     <a mat-list-item routerLinkActive="list-item-active" routerLink="">
         <mat-icon>person</mat-icon>
@@ -27,4 +27,4 @@
         <mat-icon>exit_to_app</mat-icon>
         Log out
     </a>
-</mat-nav-list>
+</mat-nav-list></div>

@@ -9,20 +9,22 @@ import { DafaultModule } from './layouts/dafault/dafault.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 
-import {ClientListComponent} from "./components/client-list.component";
-import {ClientDetailComponent} from "./components/client-details.component";
-import {HeartbeatChartComponent} from "./components/heartbeat-chart.component";
-import {NgApexchartsModule} from "ng-apexcharts";
+import { ClientListComponent } from "./components/client-list.component";
+import { ClientDetailComponent } from "./components/client-details.component";
+import { HeartbeatChartComponent } from "./components/heartbeat-chart.component";
+import { NgApexchartsModule } from "ng-apexcharts";
+import { CreateClientComponent } from './components/create/create-client/create-client.component';
 
-
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     ClientListComponent,
     ClientDetailComponent,
-    HeartbeatChartComponent
-
+    CreateClientComponent,
+    HeartbeatChartComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -31,8 +33,9 @@ import {NgApexchartsModule} from "ng-apexcharts";
     HttpClientModule,
     CommonModule,
     AppRoutingModule,
-    NgApexchartsModule
- ],
+    FormsModule,
+    NgApexchartsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
