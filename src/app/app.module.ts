@@ -11,8 +11,9 @@ import { CommonModule } from '@angular/common';
 
 import { ClientListComponent } from "./Components/client-list.component";
 import { ClientDetailComponent } from "./Components/client-details.component";
+import { HeartbeatChartComponent } from "./components/heartbeat-chart.component";
+import { NgApexchartsModule } from "ng-apexcharts";
 import { CreateClientComponent } from './components/create/create-client/create-client.component';
-
 
 import { FormsModule } from '@angular/forms';
 
@@ -22,7 +23,8 @@ import { FormsModule } from '@angular/forms';
     ClientListComponent,
     ClientDetailComponent,
     CreateClientComponent,
-
+    HeartbeatChartComponent,
+    NgApexchartsModule,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +33,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     CommonModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
