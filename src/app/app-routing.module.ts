@@ -7,6 +7,7 @@ import { CreateClientComponent } from "./components/create/create-client/create-
 import { ClientListComponent} from "./components/client-list.component";
 import { ClientDetailComponent} from "./components/client-details.component";
 import {HeartbeatChartComponent} from "./components/heartbeat-chart.component";
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
   { path: 'clients', component: ClientListComponent },
@@ -15,6 +16,8 @@ const routes: Routes = [
   { path: 'create-client', component: CreateClientComponent },
 
   { path: 'heartbeats', component: HeartbeatChartComponent },
+  {path:'login', component:LoginComponent
+ },
   {
     path: '',
     component: DafaultComponent,
