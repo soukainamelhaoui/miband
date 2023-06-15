@@ -8,13 +8,15 @@ import { AppRoutingModule } from './app-routing.module';
 
 import {ClientListComponent} from "./Components/client-list.component";
 import {ClientDetailComponent} from "./Components/client-details.component";
+import { LoginComponent } from './Components/login/login.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ClientListComponent,
-    ClientDetailComponent
+    ClientDetailComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +24,7 @@ import {ClientDetailComponent} from "./Components/client-details.component";
     CommonModule,
     AppRoutingModule,
     RouterModule.forRoot([
-      { path: 'clients', component: ClientListComponent }
+      { path: '', component: AppComponent }
     ])
   ],
   providers: [],
