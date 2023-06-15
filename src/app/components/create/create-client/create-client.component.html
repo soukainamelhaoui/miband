@@ -1,0 +1,39 @@
+<head>
+    <link rel="stylesheet" href="./create-client.component.scss">
+</head>
+<div>
+    <h2>Enregistrer un patient</h2>
+    <form (ngSubmit)="saveClient()">
+        <label>
+            Mac:
+            <input type="text" [(ngModel)]="client.mac" name="mac" required>
+        </label>
+        <br>
+        <label>
+            Nom:
+            <input type="text" [(ngModel)]="client.nom" name="nom" required>
+        </label>
+        <br>
+        <label>
+            Prénom:
+            <input type="text" [(ngModel)]="client.prenom" name="prenom" required>
+        </label>
+        <br>
+        <label>
+            Téléphone:
+            <input type="text" [(ngModel)]="client.tel" name="tel" required>
+        </label>
+        <br>
+        <label>
+            Adresse:
+            <input type="text" [(ngModel)]="client.adresse" name="adresse" required>
+        </label>
+        <br>
+        <label>
+            Email:
+            <input type="email" [(ngModel)]="client.mail" name="mail" required>
+        </label>
+        <br>
+        <button type="submit">Enregistrer</button>
+    </form>
+</div>
