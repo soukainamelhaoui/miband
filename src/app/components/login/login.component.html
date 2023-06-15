@@ -1,0 +1,14 @@
+ <div class="body">
+<div class="login">
+    <img src="try.jpg" alt="">
+    <h3>Welcome To</h3>
+    <h3>Acti-sens</h3>
+    <form class="login-form" (ngSubmit)="login()" #loginForm="ngForm">
+        <input type="text" placeholder="Enter email " id="email" name="email" [(ngModel)]="user.email">
+        <input type="text" placeholder="Enter mac address" id="mac" name="mac" [(ngModel)]="user.mac">
+
+        <button type="submit" >LOGIN</button>
+
+    </form>
+</div>
+</div>  
