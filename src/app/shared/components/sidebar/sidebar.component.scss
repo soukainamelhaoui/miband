@@ -7,10 +7,9 @@
     text-align: center;
     padding: 0px;
     img {
-      height:180px;
-      width: 180px;
+      height: 180px;;
+      width: 248px;
       object-fit: cover;
-      border-radius: 50%;
 
     }
   }
@@ -22,9 +21,13 @@
 
   
     }
+    
   
   }
-         
+    .side{
+      background-color: #FFFF;
+
+    }     
     // .mat-mdc-nav-list, mat-mdc-list-base, mdc-list{
     //   margin-top: 0 !important;
     //   padding-top: 0 !important;
