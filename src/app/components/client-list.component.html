@@ -11,10 +11,10 @@
     <tbody>
     <tr *ngFor="let client of clients">
       <td>
-        <a [routerLink]="['def/client', client.id]" class="client-link">{{ client.nom }}</a>
+        <a [routerLink]="['/def/client', client.id]" class="client-link">{{ client.nom }}</a>
       </td>
       <td>
-        <a [routerLink]="['def/client', client.id]" class="client-link">{{ client.prenom }}</a>
+        <a [routerLink]="['/def/client', client.id]" class="client-link">{{ client.prenom }}</a>
       </td>
       <td>
         <button (click)="updateClient(client.id)" class="btn btn-primary">Update</button>

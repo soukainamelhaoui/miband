@@ -1,0 +1,12 @@
+<div class="client-detail-container">
+  <h2>Client Details</h2>
+  <div *ngIf="client" class="client-details">
+    <p><strong>Client ID:</strong> {{ client.id }}</p>
+    <p><strong>Client MAC:</strong> {{ client.mac }}</p>
+    <p><strong>Client Name:</strong> {{ client.nom }}</p>
+    <p><strong>Client Surname:</strong> {{ client.prenom }}</p>
+    <p><strong>Client Phone:</strong> {{ client.tel }}</p>
+    <p><strong>Client Address:</strong> {{ client.adresse }}</p>
+    <p><strong>Client Email:</strong> {{ client.mail }}</p>
+  </div>
+</div>
