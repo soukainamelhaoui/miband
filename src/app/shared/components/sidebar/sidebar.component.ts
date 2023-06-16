@@ -22,7 +22,4 @@ getclients(){
 getCreateClient() {
   this.router.navigate(["/def/CreateClient"])
 }
-getclientsByid(){
-  this.router.navigate(["/def/clients/:id"])
-}
 }

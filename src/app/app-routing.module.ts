@@ -17,17 +17,13 @@ const routes: Routes = [
     children: [{
       path: '',
       component: DashboardComponent
-    }, {
-      path: 'posts',
-      component: PostsComponent
     },
-   { path: 'clients', component: ClientListComponent },
-  
-  { path: 'clients/:id', component: ClientDetailComponent },
 
-  { path: 'CreateClient', component: CreateClientComponent },
-
-  { path: 'heartbeats', component: HeartbeatChartComponent }
+      { path: 'posts', component: PostsComponent },
+      { path: 'clients', component: ClientListComponent },
+      { path: 'client/:id', component: ClientDetailComponent },
+      { path: 'CreateClient', component: CreateClientComponent },
+      { path: 'heartbeats', component: HeartbeatChartComponent }
   ]
 
   }];

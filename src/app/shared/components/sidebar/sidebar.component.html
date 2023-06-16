@@ -1,9 +1,9 @@
 <div class="side"><mat-nav-list>
-   
+
     <div class="profile-card">
                <img src="assets/ICON3.png" alt="Soufiane FADIL">
                <div class="header">
-                <h3>{{name}}</h3> 
+                <h3>{{name}}</h3>
                    </div>
     </div>
     <a mat-list-item routerLinkActive="list-item-active" (click)="getclients()">
@@ -14,9 +14,6 @@
         <mat-icon>import_contacts</mat-icon>
         CreateClient
       </a>
-    <a mat-list-item routerLinkActive="list-item-active" (click)="getclientsByid()">
-        <mat-icon>import_contacts</mat-icon>
-        clientsByid      </a>
     <a mat-list-item routerLinkActive="list-item-active" (click)="getheartbeats()">
         <mat-icon>import_contacts</mat-icon>
         heartbeats
@@ -26,5 +23,5 @@
         Log out
     </a>
 
-    
+
 </mat-nav-list></div>
