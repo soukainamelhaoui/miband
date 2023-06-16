@@ -7,7 +7,7 @@ import { ClientService } from '../services/client.service';
     <h2>List of Clients</h2>
     <ul>
       <li *ngFor="let client of clients">
-        <a [routerLink]="['/clients', client.id]">{{ client.nom }} {{ client.prenom }}</a>
+        <a [routerLink]="['/def/clients', client.id]">{{ client.nom }} {{ client.prenom }}</a>
       </li>
     </ul>
   `
