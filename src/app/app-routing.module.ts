@@ -7,6 +7,7 @@ import { CreateClientComponent } from "./components/create/create-client/create-
 import { ClientListComponent} from "./components/client-list.component";
 import { ClientDetailComponent} from "./components/client-details.component";
 import {HeartbeatChartComponent} from "./components/heartbeat-chart.component";
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
  

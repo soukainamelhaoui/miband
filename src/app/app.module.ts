@@ -16,6 +16,7 @@ import { NgApexchartsModule } from "ng-apexcharts";
 import { CreateClientComponent } from './components/create/create-client/create-client.component';
 
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { FormsModule } from '@angular/forms';
     ClientDetailComponent,
     CreateClientComponent,
     HeartbeatChartComponent,
-    
+    LoginComponent
   ],
   imports: [
     BrowserModule,
