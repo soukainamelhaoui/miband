@@ -22,6 +22,7 @@ const routes: Routes = [
       component: PostsComponent
     },
    { path: 'clients', component: ClientListComponent },
+   { path: 'login', component: LoginComponent },
   { path: 'clients/:id', component: ClientDetailComponent },
 
   { path: 'CreateClient', component: CreateClientComponent },
