@@ -14,15 +14,15 @@ export class SidebarComponent {
   constructor(private router : Router){}
 
 getheartbeats(){
-  this.router.navigate(["/heartbeats"])
+  this.router.navigate(["/def/heartbeats"])
 }
 getclients(){
-  this.router.navigate(["/clients"])
+  this.router.navigate(["/def/clients"])
 }
 getCreateClient() {
-  this.router.navigate(["/CreateClient"])
+  this.router.navigate(["/def/CreateClient"])
 }
 getclientsByid(){
-  this.router.navigate(["/clients/:id"])
+  this.router.navigate(["/def/clients/:id"])
 }
 }

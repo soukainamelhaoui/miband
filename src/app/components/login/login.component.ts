@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
         if (client) {
           // Client found, handle successful sign-in
           console.log('Client found:', client);
-          this.router.navigate(['/clients', client.id]);
+          this.router.navigate(['def']);
           // Perform further actions or redirect the user
         } else {
           // Client not found, handle sign-in failure

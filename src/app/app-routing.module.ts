@@ -10,9 +10,9 @@ import {HeartbeatChartComponent} from "./components/heartbeat-chart.component";
 import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
- 
+  { path: '', component: LoginComponent },
   {
-    path: '',
+    path: 'def',
     component: DafaultComponent,
     children: [{
       path: '',
@@ -22,7 +22,7 @@ const routes: Routes = [
       component: PostsComponent
     },
    { path: 'clients', component: ClientListComponent },
-   { path: 'login', component: LoginComponent },
+  
   { path: 'clients/:id', component: ClientDetailComponent },
 
   { path: 'CreateClient', component: CreateClientComponent },
