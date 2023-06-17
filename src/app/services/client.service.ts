@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Client } from '../models/client.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +20,22 @@ export class ClientService {
   }
 
   deleteClientById(id: number) {
-    return this.http.delete(`${this.apiUrl}/deleteClient/${id}`);
+    return this.http.delete(`${this.apiUrl}/deleteClient/${id}`, {
+      responseType: 'text',
+    });
+  }
+  postClient(client: Client): Observable<any> {
+    const { id, ...body } = client;
+    return this.http.post(`${this.apiUrl}/saveClient`, body, {
+      responseType: 'text',
+    });
+  }
+  updateClient(client: Client): Observable<any> {
+    const ID = client.id;
+    const { id, ...body } = client;
+
+    return this.http.put(`${this.apiUrl}/updateClient/${ID}`, body, {
+      responseType: 'text',
+    });
   }
 }

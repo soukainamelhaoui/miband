@@ -17,6 +17,7 @@ import { CreateClientComponent } from './components/create/create-client/create-
 
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
+import { UpdateClientComponent } from './components/update/update-client/update-client.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { LoginComponent } from './components/login/login.component';
     ClientDetailComponent,
     CreateClientComponent,
     HeartbeatChartComponent,
-    LoginComponent
+    LoginComponent,
+    UpdateClientComponent
   ],
   imports: [
     BrowserModule,

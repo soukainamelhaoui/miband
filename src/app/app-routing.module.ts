@@ -4,10 +4,11 @@ import { DafaultComponent } from './layouts/dafault/dafault.component';
 import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { PostsComponent } from './modules/posts/posts.component';
 import { CreateClientComponent } from "./components/create/create-client/create-client.component";
-import { ClientListComponent} from "./components/client-list.component";
-import { ClientDetailComponent} from "./components/client-details.component";
-import {HeartbeatChartComponent} from "./components/heartbeat-chart.component";
+import { ClientListComponent } from "./components/client-list.component";
+import { ClientDetailComponent } from "./components/client-details.component";
+import { HeartbeatChartComponent } from "./components/heartbeat-chart.component";
 import { LoginComponent } from './components/login/login.component';
+import { UpdateClientComponent } from './components/update/update-client/update-client.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -19,12 +20,13 @@ const routes: Routes = [
       component: DashboardComponent
     },
 
-      { path: 'posts', component: PostsComponent },
-      { path: 'clients', component: ClientListComponent },
-      { path: 'client/:id', component: ClientDetailComponent },
-      { path: 'CreateClient', component: CreateClientComponent },
-      { path: 'heartbeats', component: HeartbeatChartComponent }
-  ]
+    { path: 'posts', component: PostsComponent },
+    { path: 'clients', component: ClientListComponent },
+    { path: 'client/:id', component: ClientDetailComponent },
+    { path: 'CreateClient', component: CreateClientComponent },
+    { path: 'UpdateClient', component: UpdateClientComponent },
+    { path: 'heartbeats', component: HeartbeatChartComponent }
+    ]
 
   }];
 

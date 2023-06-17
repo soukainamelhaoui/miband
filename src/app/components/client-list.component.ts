@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientService } from '../services/client.service';
 import { Router } from "@angular/router";
+import { Client } from '../models/client.model';
 
 @Component({
   selector: 'app-client-list',
@@ -9,7 +10,7 @@ import { Router } from "@angular/router";
 })
 export class ClientListComponent implements OnInit {
   clients: any[] = [];
-
+  client: Client = new Client();
   constructor(
     private clientService: ClientService,
     private router: Router,
@@ -29,13 +30,23 @@ export class ClientListComponent implements OnInit {
 
   updateClient(clientId: number) {
     // Logic for updating the client with the given clientId
+    this.client = this.clients.find((cli: Client) => {
+      return cli.id === clientId
+    }) as Client
+
+    if (this.client) {
+      this.router.navigateByUrl('/def/UpdateClient', { state: { client: this.client } });
+    }
   }
 
   deleteClient(clientId: number) {
     this.clientService.deleteClientById(clientId).subscribe(
-      () => {
+      (res) => {
+        this.clients = this.clients.filter((cli: Client) => {
+          return cli.id != clientId;
+        });
         console.log('Client deleted successfully');
-        this.router.navigate(['/clients']); // Redirect to the clients list after deletion
+
       },
       (error) => {
         console.log('Error deleting client:', error);
