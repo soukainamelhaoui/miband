@@ -12,13 +12,13 @@ import { CommonModule } from '@angular/common';
 import { ClientListComponent } from "./components/client-list.component";
 import { ClientDetailComponent } from "./components/client-details.component";
 import { HeartbeatChartComponent } from "./components/heartbeat-chart.component";
-import { NgApexchartsModule } from "ng-apexcharts";
 import { CreateClientComponent } from './components/create/create-client/create-client.component';
 
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { UpdateClientComponent } from './components/update/update-client/update-client.component';
 import { ClientBoardService } from './services/client-board.service';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +28,7 @@ import { ClientBoardService } from './services/client-board.service';
     CreateClientComponent,
     HeartbeatChartComponent,
     LoginComponent,
-    UpdateClientComponent
+    UpdateClientComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +38,7 @@ import { ClientBoardService } from './services/client-board.service';
     CommonModule,
     AppRoutingModule,
     FormsModule,
-    NgApexchartsModule,
+    
   ],
   providers: [ClientBoardService],
   bootstrap: [AppComponent]
