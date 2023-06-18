@@ -25,4 +25,10 @@ export class ClientBoardService {
     this.mac = localStorage.getItem('mac') || '';
     this.id = localStorage.getItem('id') || '';
   }
+  clearLocalStorage() {
+    localStorage.removeItem('nom');
+    localStorage.removeItem('prenom');
+    localStorage.removeItem('mac');
+    localStorage.removeItem('id');
+  }
 }
