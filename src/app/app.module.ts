@@ -19,6 +19,7 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { UpdateClientComponent } from './components/update/update-client/update-client.component';
 import { NgChartsModule } from 'ng2-charts';
+import { ClientBoardService } from './services/client-board.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { NgChartsModule } from 'ng2-charts';
     
     NgApexchartsModule,NgChartsModule
   ],
-  providers: [],
+  providers: [ClientBoardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

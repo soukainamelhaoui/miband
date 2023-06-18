@@ -11,8 +11,9 @@ import { LoginComponent } from './components/login/login.component';
 import { UpdateClientComponent } from './components/update/update-client/update-client.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
-  {
+  { path: '', redirectTo: '/login', pathMatch: 'full' }, // Redirect to the login page
+  { path: 'login', component: LoginComponent }, // Add the login route
+    {
     path: 'def',
     component: DafaultComponent,
     children: [{
