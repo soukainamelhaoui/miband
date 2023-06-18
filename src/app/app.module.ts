@@ -18,6 +18,7 @@ import { CreateClientComponent } from './components/create/create-client/create-
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { UpdateClientComponent } from './components/update/update-client/update-client.component';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { UpdateClientComponent } from './components/update/update-client/update-
     CommonModule,
     AppRoutingModule,
     FormsModule,
-    NgApexchartsModule,
+    
+    NgApexchartsModule,NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
