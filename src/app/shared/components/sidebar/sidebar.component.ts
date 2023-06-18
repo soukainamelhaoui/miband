@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ClientBoardService } from 'src/app/services/client-board.service';
 
 
 

@@ -18,6 +18,7 @@ import { CreateClientComponent } from './components/create/create-client/create-
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { UpdateClientComponent } from './components/update/update-client/update-client.component';
+import { ClientBoardService } from './services/client-board.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { UpdateClientComponent } from './components/update/update-client/update-
     FormsModule,
     NgApexchartsModule,
   ],
-  providers: [],
+  providers: [ClientBoardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

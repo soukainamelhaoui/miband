@@ -2,9 +2,24 @@
     <mat-card class="example-card">
       <div class="card-content">
         <img class="img" src="assets/docteur.jpg" alt="prophil">
-        <div class="text-content">
+        <div class="text-content1">
           <h2>Patient</h2>
           <h4>{{ nom }} {{ prenom }}</h4>
+        </div>
+        <div class="text-content2">
+          <ul>
+            <li>Heart Beat : {{ data1 }}</li>
+            <li>Temperature :{{ data2 }}</li>
+            <li>Pression :{{ data3 }}</li>
+            <li>last controle: :{{ datePrelevement }}</li>
+          </ul>
+        </div>
+        <div class="text-content2">
+          <ul>
+            <li>Sex : F/M</li>
+            <li>Age : 20 </li>
+            <li>Blood : B+</li>
+          </ul>
         </div>
       </div>
     </mat-card>
