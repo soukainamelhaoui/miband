@@ -17,7 +17,9 @@ const routes: Routes = [
     path: 'def',
     component: DafaultComponent,
     children: [{
-      path: '',
+       path: '', redirectTo: '/def/Dashboard', pathMatch: 'full' }, 
+{
+      path: 'Dashboard',
       component: DashboardComponent
     },
 

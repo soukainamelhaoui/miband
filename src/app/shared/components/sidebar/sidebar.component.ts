@@ -14,6 +14,9 @@ export class SidebarComponent {
   name = "Mr.docteur"
   constructor(private router: Router, private clientBoardService: ClientBoardService) {}
 
+getdDashboard(){
+  this.router.navigate(["/def/Dashboard"])
+}
 getheartbeats(){
   this.router.navigate(["/def/heartbeats"])
 }

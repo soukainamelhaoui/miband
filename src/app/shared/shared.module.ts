@@ -11,6 +11,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatMenuModule} from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
 import { PostsComponent } from '../modules/posts/posts.component';
+import { HeartbeatChartComponent } from "src/app/components/heartbeat-chart.component";
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { PostsComponent } from '../modules/posts/posts.component';
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
+    HeartbeatChartComponent
   ],
   imports: [
     CommonModule,
@@ -29,15 +31,12 @@ import { PostsComponent } from '../modules/posts/posts.component';
     MatMenuModule,
     MatListModule,
 
-    
-
-
-
-  ],
+     ],
   exports: [
     HeaderComponent,
     FooterComponent,
-    SidebarComponent
+    SidebarComponent,
+    HeartbeatChartComponent
   ]
 })
 export class SharedModule { }

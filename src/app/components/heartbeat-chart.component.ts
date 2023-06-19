@@ -4,16 +4,20 @@ import { Chart } from "chart.js";
 import { NgZone } from '@angular/core';
 import { Subscription, timer } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { ClientBoardService } from 'src/app/services/client-board.service';
 
 @Component({
+  selector: 'app-heartbeat-chart',
   templateUrl: "./heartbeat-chart.component.html"
 })
 export class HeartbeatChartComponent implements OnInit {
   public chartOptions: any[] = [];
   public heartbeats: any[] = [];
+  public id!: string;
+
 
   public chart: any;
-  updateInterval: number = 5000; // Update interval in milliseconds
+  updateInterval: number = 3000; // Update interval in milliseconds
   dataSubscription: Subscription = new Subscription;
   // public lineChartOptions: any = {
   //   responsive: true,
@@ -31,10 +35,12 @@ export class HeartbeatChartComponent implements OnInit {
 
    
 
-  constructor(private heartbeatService: HeartbeatService, private ngZone: NgZone) {
+  constructor(private heartbeatService: HeartbeatService, private ngZone: NgZone,private clientBoard: ClientBoardService) {
   }
 
   ngOnInit() {
+    this.clientBoard.loadFromLocalStorage();
+    this.id = this.clientBoard.id;
     this.createChart();
     this.startRealTimeUpdates();
 
@@ -105,8 +111,8 @@ export class HeartbeatChartComponent implements OnInit {
    }
    
    createChart() {
-    const clientId = 101; // Replace with the desired client ID
-  
+    const clientId = parseInt(this.id); // Replace with the desired client ID
+    console.log("clientId",clientId);
     this.heartbeatService.getClientHeartbeats(clientId).subscribe(
       (response: any[]) => {
         const labels = response.map((heartbeat: any) => heartbeat.date_prelevement).reverse();
@@ -137,7 +143,7 @@ export class HeartbeatChartComponent implements OnInit {
   }
 
   startRealTimeUpdates() {
-    const clientId = 101; // Replace with the desired client ID
+    const clientId = parseInt(this.id); // Replace with the desired client ID
   
     // Clear any existing subscription
     if (this.dataSubscription) {
@@ -149,8 +155,14 @@ export class HeartbeatChartComponent implements OnInit {
       switchMap(() => this.heartbeatService.getClientHeartbeats(clientId))
     ).subscribe(
       (response: any[]) => {
-        const labels = response.map((heartbeat: any) => heartbeat.date_prelevement);
-        const data = response.map((heartbeat: any) => heartbeat.data1);
+        // Sort the response by date_prelevement in descending order
+        const sortedResponse = response.sort((a, b) => new Date(b.date_prelevement).getTime() - new Date(a.date_prelevement).getTime());
+  
+        // Get the last 20 records from the sorted response
+        const last20Records = sortedResponse.slice(0, 20);
+  
+        const labels = last20Records.map((heartbeat: any) => heartbeat.date_prelevement).reverse();
+        const data = last20Records.map((heartbeat: any) => heartbeat.data1).reverse();
   
         // Update the chart with new data
         this.ngZone.run(() => {
@@ -164,7 +176,6 @@ export class HeartbeatChartComponent implements OnInit {
       }
     );
   }
-  
   
   
    

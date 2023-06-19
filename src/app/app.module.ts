@@ -11,7 +11,6 @@ import { CommonModule } from '@angular/common';
 
 import { ClientListComponent } from "./components/client-list.component";
 import { ClientDetailComponent } from "./components/client-details.component";
-import { HeartbeatChartComponent } from "./components/heartbeat-chart.component";
 import { NgApexchartsModule } from "ng-apexcharts";
 import { CreateClientComponent } from './components/create/create-client/create-client.component';
 
@@ -28,9 +27,9 @@ import { NgChartsModule } from 'ng2-charts';
     ClientListComponent,
     ClientDetailComponent,
     CreateClientComponent,
-    HeartbeatChartComponent,
     LoginComponent,
     UpdateClientComponent,
+    
   ],
   imports: [
     BrowserModule,
