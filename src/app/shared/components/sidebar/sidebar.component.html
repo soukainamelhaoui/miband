@@ -6,22 +6,22 @@
                 <h3>{{name}}</h3>
                    </div>
     </div>
-    <a mat-list-item routerLinkActive="list-item-active" (click)="getdDashboard()">
+    <a mat-list-item routerLinkActive="list-item-active" (click)="getdDashboard()" *ngIf="isUser()">
         <mat-icon>dashboard</mat-icon>
         /
         <mat-icon>bookmark</mat-icon>
 
         Dashboard
       </a>
-    <a mat-list-item routerLinkActive="list-item-active" (click)="getclients()">
+    <a mat-list-item routerLinkActive="list-item-active" (click)="getclients()" *ngIf="isAdmin()">
         <mat-icon>account_circle</mat-icon>
         Patient profile
       </a>
-    <a mat-list-item routerLinkActive="list-item-active" (click)="getCreateClient()">
+    <a mat-list-item routerLinkActive="list-item-active" (click)="getCreateClient()" *ngIf="isAdmin()">
         <mat-icon>add</mat-icon>
         Add profile
       </a>
-    <a mat-list-item routerLinkActive="list-item-active" (click)="getheartbeats()">
+    <a mat-list-item routerLinkActive="list-item-active" (click)="getheartbeats()" *ngIf="isAdmin()">
         <mat-icon>favorite_outline</mat-icon>
         heartbeats
       </a>
