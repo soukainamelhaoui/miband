@@ -19,7 +19,6 @@ import { HeartbeatChartComponent } from "src/app/components/heartbeat-chart.comp
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
-    HeartbeatChartComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +35,6 @@ import { HeartbeatChartComponent } from "src/app/components/heartbeat-chart.comp
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
-    HeartbeatChartComponent
   ]
 })
 export class SharedModule { }
