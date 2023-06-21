@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -8,11 +8,14 @@ import { AuthService } from './auth.service';
 export class UserGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(): boolean {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     if (!this.authService.isAdminUser()) {
       return true;
     } else {
-      this.router.navigate(['/def/clients']); 
+      // Store the current URL in session storage
+      sessionStorage.setItem('redirectUrl', state.url);
+      
+      this.router.navigate(['/def/clients']);
       return false;
     }
   }

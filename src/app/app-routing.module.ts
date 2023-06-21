@@ -33,6 +33,7 @@ const routes: Routes = [
         { path: 'CreateClient', component: CreateClientComponent },
         { path: 'UpdateClient', component: UpdateClientComponent },
         { path: 'heartbeats', component: HeartbeatChartComponent },
+        { path: 'client/:id', component: ClientDetailComponent },
         // Add other routes for admin-only pages here
       ]
     },
