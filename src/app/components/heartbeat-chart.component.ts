@@ -51,8 +51,14 @@ export class HeartbeatChartComponent implements OnInit {
     console.log("clientId",clientId);
     this.heartbeatService.getClientHeartbeats(clientId).subscribe(
       (response: any[]) => {
-        const labels = response.map((heartbeat: any) => heartbeat.date_prelevement).reverse();
-        const data = response.map((heartbeat: any) => heartbeat.data1).reverse();
+        // Sort the response by date_prelevement in descending order
+        const sortedResponse = response.sort((a, b) => new Date(b.date_prelevement).getTime() - new Date(a.date_prelevement).getTime());
+  
+        // Get the last 20 records from the sorted response
+        const last20Records = sortedResponse.slice(0, 60);
+  
+        const labels = last20Records.map((heartbeat: any) => heartbeat.date_prelevement).reverse();
+        const data = last20Records.map((heartbeat: any) => heartbeat.data1).reverse();
   
         // Create the chart using the extracted data
         this.chart = new Chart("MyChart", {
@@ -61,9 +67,10 @@ export class HeartbeatChartComponent implements OnInit {
             labels: labels,
             datasets: [
               {
-                label: "Nb.Beat",
+                label: "Heartbeat",
                 data: data,
-                backgroundColor: 'blue'
+                 borderColor:'orange',
+      backgroundColor: 'orange',
               }
             ]
           },
@@ -100,7 +107,7 @@ export class HeartbeatChartComponent implements OnInit {
         const sortedResponse = response.sort((a, b) => new Date(b.date_prelevement).getTime() - new Date(a.date_prelevement).getTime());
   
         // Get the last 20 records from the sorted response
-        const last20Records = sortedResponse.slice(0, 30);
+        const last20Records = sortedResponse.slice(0, 60);
   
         const labels = last20Records.map((heartbeat: any) => heartbeat.date_prelevement).reverse();
         const data = last20Records.map((heartbeat: any) => heartbeat.data1).reverse();
