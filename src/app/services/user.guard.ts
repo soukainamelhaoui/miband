@@ -12,7 +12,7 @@ export class UserGuard implements CanActivate {
     if (!this.authService.isAdminUser()) {
       return true;
     } else {
-      this.router.navigate(['/def/clients']); // Redirect admin users to the clients page
+      this.router.navigate(['/def/clients']); 
       return false;
     }
   }
