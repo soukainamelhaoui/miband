@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ClientBoardService } from 'src/app/services/client-board.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 
@@ -11,9 +12,17 @@ import { ClientBoardService } from 'src/app/services/client-board.service';
 })
 export class SidebarComponent {
   photo = "assets/docteur.jpg"
-  name = "Mr.docteur"
-  constructor(private router: Router, private clientBoardService: ClientBoardService) {}
+  constructor(private router: Router, private clientBoardService: ClientBoardService,private authService: AuthService) {}
 
+
+  isUser(): boolean {
+    return !this.authService.isAdminUser();
+  }
+
+  isAdmin(): boolean {
+    return this.authService.isAdminUser();
+  }
+  
 getdDashboard(){
   this.router.navigate(["/def/Dashboard"])
 }

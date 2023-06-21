@@ -4,6 +4,7 @@ import { User } from 'src/app/user';
 import { Router } from '@angular/router';
 import { ClientBoardService } from 'src/app/services/client-board.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,22 +16,28 @@ export class LoginComponent implements OnInit {
   public prenom!:string
   public mac!:string
   public id!:string
+
   user:User = new User();
   
-  constructor(private http: HttpClient,private router: Router,private ClientBoard: ClientBoardService,    private snackBar: MatSnackBar
+  constructor(private http: HttpClient,private router: Router,private ClientBoard: ClientBoardService,private authService: AuthService,    private snackBar: MatSnackBar
     ){
 
   }
 
   ngOnInit() {}
- 
 
   login() {
+    if (this.user.email === "admin@gmail.com" && this.user.mac === "aa:aa:aa") {
+      // Admin login
+      this.authService.setIsAdmin(true); // Set admin status based on the provided mac
+      this.router.navigate(['/def']);
+    } else {
     this.http.get<User[]>(`http://154.49.137.28:8080/listClients`).subscribe(
       (response: any[]) => {
         const client = response.find((c) => c.mail === this.user.email && c.mac === this.user.mac);
         if (client) {
           // Client found, handle successful sign-in
+          this.authService.setIsAdmin(false); // Set admin status as false for non-admin users
           console.log('Client found:', client);
           
           this.ClientBoard.nom = client.nom;
@@ -39,7 +46,7 @@ export class LoginComponent implements OnInit {
           this.ClientBoard.id = client.id;
           console.log(client.id)
           this.ClientBoard.saveToLocalStorage(); // Enregistrer les données dans le stockage local
-          this.router.navigate(['def']);
+          this.router.navigate(['/def/Dashboard']);
           // Perform further actions or redirect the user
         } else {
           // Client not found, handle sign-in failure
@@ -58,6 +65,7 @@ export class LoginComponent implements OnInit {
       }
     );
   }
+}
   //  console.log(this.user)
   showErrorMessage(message: string) {
     this.snackBar.open(message, 'Close', {

@@ -9,33 +9,38 @@ import { ClientDetailComponent } from "./components/client-details.component";
 import { HeartbeatChartComponent } from "./components/heartbeat-chart.component";
 import { LoginComponent } from './components/login/login.component';
 import { UpdateClientComponent } from './components/update/update-client/update-client.component';
-
+import { AdminGuard } from 'src/app/services/admin.guard';
+import { UserGuard } from 'src/app/services/user.guard';
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' }, // Redirect to the login page
   { path: 'login', component: LoginComponent }, // Add the login route
     {
-    path: 'def',
-    component: DafaultComponent,
-    children: [{
-       path: '', redirectTo: '/def/Dashboard', pathMatch: 'full' }, 
-{
-      path: 'Dashboard',
-      component: DashboardComponent
+      path: 'def',
+      component: DafaultComponent,
+      canActivate: [UserGuard], // UserGuard allows access to all child routes for non-admin users
+      children: [
+        { path: '', redirectTo: 'Dashboard', pathMatch: 'full' },
+        { path: 'Dashboard', component: DashboardComponent },
+        // Add other routes for user-only pages here
+      ]
     },
-
-    { path: 'posts', component: PostsComponent },
-    { path: 'clients', component: ClientListComponent },
-    { path: 'client/:id', component: ClientDetailComponent },
-    { path: 'CreateClient', component: CreateClientComponent },
-    { path: 'UpdateClient', component: UpdateClientComponent },
-    { path: 'heartbeats', component: HeartbeatChartComponent }
-    ]
-
-  }];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
-
+    {
+      path: 'def',
+      component: DafaultComponent,
+      canActivate: [AdminGuard], // AdminGuard allows access to all child routes for admin users
+      children: [
+        { path: 'clients', component: ClientListComponent },
+        { path: 'CreateClient', component: CreateClientComponent },
+        { path: 'UpdateClient', component: UpdateClientComponent },
+        { path: 'heartbeats', component: HeartbeatChartComponent },
+        // Add other routes for admin-only pages here
+      ]
+    },
+    // Add any other routes outside of 'def' here
+  ];
+  
+  @NgModule({
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
+  })
+  export class AppRoutingModule {}
