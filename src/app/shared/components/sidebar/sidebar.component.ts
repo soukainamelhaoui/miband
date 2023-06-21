@@ -12,7 +12,6 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class SidebarComponent {
   photo = "assets/docteur.jpg"
-  name = "Mr.docteur"
   constructor(private router: Router, private clientBoardService: ClientBoardService,private authService: AuthService) {}
 
 
