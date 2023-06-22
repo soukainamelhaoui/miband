@@ -18,10 +18,6 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { UpdateClientComponent } from './components/update/update-client/update-client.component';
 import { ClientBoardService } from './services/client-board.service';
-<<<<<<< HEAD
-//pagination for clients list
-import { NgxPaginationModule } from 'ngx-pagination';
-=======
 import { NgChartsModule } from 'ng2-charts';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
@@ -31,8 +27,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { HeartbeatChartComponent } from './components/heartbeat-chart.component';
 
-
->>>>>>> 6b58670809766c8f8c9b77c0ec99d2e4c08f1793
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +39,7 @@ import { HeartbeatChartComponent } from './components/heartbeat-chart.component'
     DashboardComponent,
     HeartbeatChartComponent
 
-    
+
   ],
   imports: [
     BrowserModule,
@@ -55,22 +50,18 @@ import { HeartbeatChartComponent } from './components/heartbeat-chart.component'
     AppRoutingModule,
     FormsModule,
     NgApexchartsModule,
-<<<<<<< HEAD
     NgChartsModule,
-    NgxPaginationModule
-=======
-    NgChartsModule ,
     MatMenuModule,
     MatListModule,
     MatGridListModule,
     MatCardModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    NgxPaginationModule
   ],
-  exports:[
+  exports: [
     DashboardComponent,
     HeartbeatChartComponent
 
->>>>>>> 6b58670809766c8f8c9b77c0ec99d2e4c08f1793
   ],
   providers: [ClientBoardService],
   bootstrap: [AppComponent]
