@@ -1,21 +1,27 @@
 <div class="side"><mat-nav-list>
 
     <div class="profile-card">
-               <img src="assets/ICON3.png" alt="Soufiane FADIL">
+               <img src="assets/ICON3.png" alt="img">
                <div class="header">
-                <h3>{{name}}</h3>
                    </div>
     </div>
-    <a mat-list-item routerLinkActive="list-item-active" (click)="getclients()">
-        <mat-icon>import_contacts</mat-icon>
-        clients
+    <a mat-list-item routerLinkActive="list-item-active" (click)="getdDashboard()" *ngIf="isUser()">
+        <mat-icon>dashboard</mat-icon>
+        <!-- /
+        <mat-icon>bookmark</mat-icon> -->
+
+        Dashboard
       </a>
-    <a mat-list-item routerLinkActive="list-item-active" (click)="getCreateClient()">
-        <mat-icon>import_contacts</mat-icon>
-        CreateClient
+    <a mat-list-item routerLinkActive="list-item-active" (click)="getclients()" *ngIf="isAdmin()">
+        <mat-icon>account_circle</mat-icon>
+        Profile
       </a>
-    <a mat-list-item routerLinkActive="list-item-active" (click)="getheartbeats()">
-        <mat-icon>import_contacts</mat-icon>
+    <a mat-list-item routerLinkActive="list-item-active" (click)="getCreateClient()" *ngIf="isAdmin()">
+        <mat-icon>add</mat-icon>
+        Add profile
+      </a>
+    <a mat-list-item routerLinkActive="list-item-active" (click)="getheartbeats()" *ngIf="isAdmin()">
+        <mat-icon>favorite_outline</mat-icon>
         heartbeats
       </a>
       <a class="logOut" mat-list-item routerLinkActive="list-item-active" (click)="logout()">

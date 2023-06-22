@@ -1,4 +1,9 @@
 :host {
+  .side{
+    display: flex;
+    flex-wrap: wrap;
+
+  }
   .mat-icon {
     vertical-align: middle;
     margin-right: 20px;

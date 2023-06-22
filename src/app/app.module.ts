@@ -11,26 +11,40 @@ import { CommonModule } from '@angular/common';
 
 import { ClientListComponent } from "./components/client-list.component";
 import { ClientDetailComponent } from "./components/client-details.component";
-import { HeartbeatChartComponent } from "./components/heartbeat-chart.component";
 import { NgApexchartsModule } from "ng-apexcharts";
 import { CreateClientComponent } from './components/create/create-client/create-client.component';
 
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { UpdateClientComponent } from './components/update/update-client/update-client.component';
-import { NgChartsModule } from 'ng2-charts';
 import { ClientBoardService } from './services/client-board.service';
+<<<<<<< HEAD
 //pagination for clients list
 import { NgxPaginationModule } from 'ngx-pagination';
+=======
+import { NgChartsModule } from 'ng2-charts';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatListModule } from '@angular/material/list';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { DashboardComponent } from './modules/dashboard/dashboard.component';
+import { HeartbeatChartComponent } from './components/heartbeat-chart.component';
+
+
+>>>>>>> 6b58670809766c8f8c9b77c0ec99d2e4c08f1793
 @NgModule({
   declarations: [
     AppComponent,
     ClientListComponent,
     ClientDetailComponent,
     CreateClientComponent,
-    HeartbeatChartComponent,
     LoginComponent,
-    UpdateClientComponent
+    UpdateClientComponent,
+    DashboardComponent,
+    HeartbeatChartComponent
+
+    
   ],
   imports: [
     BrowserModule,
@@ -41,8 +55,22 @@ import { NgxPaginationModule } from 'ngx-pagination';
     AppRoutingModule,
     FormsModule,
     NgApexchartsModule,
+<<<<<<< HEAD
     NgChartsModule,
     NgxPaginationModule
+=======
+    NgChartsModule ,
+    MatMenuModule,
+    MatListModule,
+    MatGridListModule,
+    MatCardModule,
+    MatSnackBarModule
+  ],
+  exports:[
+    DashboardComponent,
+    HeartbeatChartComponent
+
+>>>>>>> 6b58670809766c8f8c9b77c0ec99d2e4c08f1793
   ],
   providers: [ClientBoardService],
   bootstrap: [AppComponent]

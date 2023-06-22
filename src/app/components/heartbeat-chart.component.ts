@@ -4,16 +4,20 @@ import { Chart } from "chart.js";
 import { NgZone } from '@angular/core';
 import { Subscription, timer } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { ClientBoardService } from 'src/app/services/client-board.service';
 
 @Component({
+  selector: 'app-heartbeat-chart',
   templateUrl: "./heartbeat-chart.component.html"
 })
 export class HeartbeatChartComponent implements OnInit {
   public chartOptions: any[] = [];
   public heartbeats: any[] = [];
+  public id!: string;
+
 
   public chart: any;
-  updateInterval: number = 5000; // Update interval in milliseconds
+  updateInterval: number = 3000; // Update interval in milliseconds
   dataSubscription: Subscription = new Subscription;
   // public lineChartOptions: any = {
   //   responsive: true,
@@ -31,13 +35,16 @@ export class HeartbeatChartComponent implements OnInit {
 
 
 
-  constructor(private heartbeatService: HeartbeatService, private ngZone: NgZone) {
+  constructor(private heartbeatService: HeartbeatService, private ngZone: NgZone,private clientBoard: ClientBoardService) {
   }
 
   ngOnInit() {
+    this.clientBoard.loadFromLocalStorage();
+    this.id = this.clientBoard.id;
     this.createChart();
     this.startRealTimeUpdates();
 
+<<<<<<< HEAD
     //   this.heartbeatService.getHeartbeats().subscribe(
     //     (response: Object) => { // Adjust the type to Object
     //       this.heartbeats = response as any[]; // Cast the response to any[] if necessary
@@ -112,6 +119,24 @@ export class HeartbeatChartComponent implements OnInit {
         const labels = response.map((heartbeat: any) => heartbeat.date_prelevement).reverse();
         const data = response.map((heartbeat: any) => heartbeat.data1).reverse();
 
+=======
+    }
+   
+   createChart() {
+    const clientId = parseInt(this.id); // Replace with the desired client ID
+    console.log("clientId",clientId);
+    this.heartbeatService.getClientHeartbeats(clientId).subscribe(
+      (response: any[]) => {
+        // Sort the response by date_prelevement in descending order
+        const sortedResponse = response.sort((a, b) => new Date(b.date_prelevement).getTime() - new Date(a.date_prelevement).getTime());
+  
+        // Get the last 20 records from the sorted response
+        const last20Records = sortedResponse.slice(0, 60);
+  
+        const labels = last20Records.map((heartbeat: any) => heartbeat.date_prelevement).reverse();
+        const data = last20Records.map((heartbeat: any) => heartbeat.data1).reverse();
+  
+>>>>>>> 6b58670809766c8f8c9b77c0ec99d2e4c08f1793
         // Create the chart using the extracted data
         this.chart = new Chart("MyChart", {
           type: 'line',
@@ -119,14 +144,20 @@ export class HeartbeatChartComponent implements OnInit {
             labels: labels,
             datasets: [
               {
-                label: "Data",
+                label: "Heartbeat",
                 data: data,
-                backgroundColor: 'blue'
+                 borderColor:'orange',
+      backgroundColor: 'orange',
               }
             ]
           },
           options: {
-            aspectRatio: 2.5
+            aspectRatio: 8,
+            scales: {
+              x: {
+                display: false // Hide the x-axis labels
+              }
+            }
           }
         });
       },
@@ -137,8 +168,13 @@ export class HeartbeatChartComponent implements OnInit {
   }
 
   startRealTimeUpdates() {
+<<<<<<< HEAD
     const clientId = 101; // Replace with the desired client ID
 
+=======
+    const clientId = parseInt(this.id); // Replace with the desired client ID
+  
+>>>>>>> 6b58670809766c8f8c9b77c0ec99d2e4c08f1793
     // Clear any existing subscription
     if (this.dataSubscription) {
       this.dataSubscription.unsubscribe();
@@ -149,9 +185,21 @@ export class HeartbeatChartComponent implements OnInit {
       switchMap(() => this.heartbeatService.getClientHeartbeats(clientId))
     ).subscribe(
       (response: any[]) => {
+<<<<<<< HEAD
         const labels = response.map((heartbeat: any) => heartbeat.date_prelevement);
         const data = response.map((heartbeat: any) => heartbeat.data1);
 
+=======
+        // Sort the response by date_prelevement in descending order
+        const sortedResponse = response.sort((a, b) => new Date(b.date_prelevement).getTime() - new Date(a.date_prelevement).getTime());
+  
+        // Get the last 20 records from the sorted response
+        const last20Records = sortedResponse.slice(0, 60);
+  
+        const labels = last20Records.map((heartbeat: any) => heartbeat.date_prelevement).reverse();
+        const data = last20Records.map((heartbeat: any) => heartbeat.data1).reverse();
+  
+>>>>>>> 6b58670809766c8f8c9b77c0ec99d2e4c08f1793
         // Update the chart with new data
         this.ngZone.run(() => {
           this.chart.data.labels = labels;
@@ -164,8 +212,15 @@ export class HeartbeatChartComponent implements OnInit {
       }
     );
   }
+<<<<<<< HEAD
 
 
 
 
 }
+=======
+  
+  
+   
+}
+>>>>>>> 6b58670809766c8f8c9b77c0ec99d2e4c08f1793

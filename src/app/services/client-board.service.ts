@@ -25,6 +25,14 @@ export class ClientBoardService {
     this.mac = localStorage.getItem('mac') || '';
     this.id = localStorage.getItem('id') || '';
   }
+  setClientId(clientId: string) {
+    this.id = clientId;
+    this.saveToLocalStorage();
+  }
+
+  getClientId(): string {
+    return this.id;
+  }
   clearLocalStorage() {
     localStorage.removeItem('nom');
     localStorage.removeItem('prenom');
