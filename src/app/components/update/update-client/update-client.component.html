@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="./update-client.component.scss">
 </head>
 <div>
-    <h2>Enregistrer un patient</h2>
+    <h2>Register a patient</h2>
     <form (ngSubmit)="saveClient()">
         <label>
             Mac:
@@ -10,17 +10,17 @@
         </label>
         <br>
         <label>
-            Nom:
+            Name:
             <input type="text" [(ngModel)]="client.nom" name="nom" required>
         </label>
         <br>
         <label>
-            Prénom:
+            First name:
             <input type="text" [(ngModel)]="client.prenom" name="prenom" required>
         </label>
         <br>
         <label>
-            Téléphone:
+            Phone number:
             <input type="text" [(ngModel)]="client.tel" name="tel" required>
         </label>
         <br>
@@ -34,6 +34,6 @@
             <input type="email" [(ngModel)]="client.mail" name="mail" required>
         </label>
         <br>
-        <button type="submit">Enregistrer</button>
+        <button type="submit">Submit</button>
     </form>
 </div>

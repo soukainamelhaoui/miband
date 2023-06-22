@@ -27,7 +27,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { HeartbeatChartComponent } from './components/heartbeat-chart.component';
 
-
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +39,7 @@ import { HeartbeatChartComponent } from './components/heartbeat-chart.component'
     DashboardComponent,
     HeartbeatChartComponent
 
-    
+
   ],
   imports: [
     BrowserModule,
@@ -50,14 +50,15 @@ import { HeartbeatChartComponent } from './components/heartbeat-chart.component'
     AppRoutingModule,
     FormsModule,
     NgApexchartsModule,
-    NgChartsModule ,
+    NgChartsModule,
     MatMenuModule,
     MatListModule,
     MatGridListModule,
     MatCardModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    NgxPaginationModule
   ],
-  exports:[
+  exports: [
     DashboardComponent,
     HeartbeatChartComponent
 

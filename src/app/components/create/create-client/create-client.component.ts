@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ClientService } from 'src/app/services/client.service';
 import { Client } from 'src/app/models/client.model';
+import { Router } from '@angular/router';
+declare var alert: any;
+
 
 @Component({
   selector: 'app-create-client',
@@ -10,8 +13,8 @@ import { Client } from 'src/app/models/client.model';
 })
 export class CreateClientComponent {
   client: Client = new Client();
-  constructor(private http: HttpClient, private clientservice: ClientService) { }
-
+  constructor(private http: HttpClient, private clientservice: ClientService,private router: Router) { }
+ 
   saveClient() {
     console.log(this.client);
 
@@ -19,26 +22,15 @@ export class CreateClientComponent {
       .subscribe(
         response => {
           console.log('Enregistrement du client réussi :', response);
+          alert('Successful profile registration');
         },
         error => {
           console.error('Erreur lors de l\'enregistrement du client :', error);
+          alert('Error when saving profile : ' + error);
         }
       );
-  }
-  /*const httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  };
- 
-    this.http.post(url, this.client, httpOptions)
-     .subscribe(
-       response => {
-         console.log('Enregistrement du client réussi :', response);
-       },
-       error => {
-         console.error('Erreur lors de l\'enregistrement du client :', error);
-       }
-     );*/
+      this.client=new Client;
 
+  }
+  
 }

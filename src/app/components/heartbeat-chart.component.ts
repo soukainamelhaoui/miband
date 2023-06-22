@@ -33,7 +33,7 @@ export class HeartbeatChartComponent implements OnInit {
 
 
 
-   
+
 
   constructor(private heartbeatService: HeartbeatService, private ngZone: NgZone,private clientBoard: ClientBoardService) {
   }
@@ -97,7 +97,7 @@ export class HeartbeatChartComponent implements OnInit {
     if (this.dataSubscription) {
       this.dataSubscription.unsubscribe();
     }
-  
+
     // Start the real-time update process
     this.dataSubscription = timer(0, this.updateInterval).pipe(
       switchMap(() => this.heartbeatService.getClientHeartbeats(clientId))
