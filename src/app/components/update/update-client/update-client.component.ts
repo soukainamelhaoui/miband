@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Client } from 'src/app/models/client.model';
 import { ClientService } from 'src/app/services/client.service';
-
+declare var alert: any;
 @Component({
   selector: 'app-update-client',
   templateUrl: './update-client.component.html',
@@ -29,9 +29,11 @@ export class UpdateClientComponent implements OnInit {
       .subscribe(
         response => {
           console.log('Enregistrement du client réussi :', response);
+          alert('successfully updated');
         },
         error => {
           console.error('Erreur lors de l\'enregistrement du client :', error);
+          alert('update failed : ' + error);
         }
       );
   }

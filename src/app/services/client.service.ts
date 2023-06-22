@@ -8,6 +8,7 @@ import { Client } from '../models/client.model';
 })
 export class ClientService {
   private apiUrl = 'http://154.49.137.28:8080';
+  router: any;
 
   constructor(private http: HttpClient) { }
 
@@ -37,6 +38,9 @@ export class ClientService {
     return this.http.put(`${this.apiUrl}/updateClient/${ID}`, body, {
       responseType: 'text',
     });
+  }
+  AjouterClient(){
+      this.router.navigate(["/def/CreateClient"])
   }
 
 }
