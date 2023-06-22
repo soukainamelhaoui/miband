@@ -14,6 +14,10 @@
       </a>
     <a mat-list-item routerLinkActive="list-item-active" (click)="getclients()" *ngIf="isAdmin()">
         <mat-icon>account_circle</mat-icon>
+        Clients
+      </a>
+    <a mat-list-item routerLinkActive="list-item-active" (click)="getprofile()" *ngIf="isUser()">
+        <mat-icon>account_circle</mat-icon>
         Profile
       </a>
     <a mat-list-item routerLinkActive="list-item-active" (click)="getCreateClient()" *ngIf="isAdmin()">

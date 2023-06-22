@@ -12,7 +12,10 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class SidebarComponent {
   photo = "assets/docteur.jpg"
-  constructor(private router: Router, private clientBoardService: ClientBoardService,private authService: AuthService) {}
+  public id!: string;
+  constructor(private router: Router, private clientBoardService: ClientBoardService,private authService: AuthService) {
+    this.id = this.clientBoardService.id;
+  }
 
 
   isUser(): boolean {
@@ -35,8 +38,13 @@ getclients(){
 getCreateClient() {
   this.router.navigate(["/def/CreateClient"])
 }
+getprofile(){
+  const Path = `def/client/${this.id}`;
+  this.router.navigate([Path])
+}
 logout() {
   this.clientBoardService.clearLocalStorage(); // Clear local storage data
+  
   this.router.navigate(['/login']); // Navigate to the login page
 }
 }

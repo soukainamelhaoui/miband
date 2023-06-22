@@ -21,6 +21,7 @@ const routes: Routes = [
       children: [
         { path: '', redirectTo: 'Dashboard', pathMatch: 'full' },
         { path: 'Dashboard', component: DashboardComponent },
+        { path: 'client/:id', component: ClientDetailComponent }
         // Add other routes for user-only pages here
       ]
     },
