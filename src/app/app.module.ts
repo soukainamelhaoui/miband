@@ -20,7 +20,8 @@ import { LoginComponent } from './components/login/login.component';
 import { UpdateClientComponent } from './components/update/update-client/update-client.component';
 import { NgChartsModule } from 'ng2-charts';
 import { ClientBoardService } from './services/client-board.service';
-
+//pagination for clients list
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,8 +40,9 @@ import { ClientBoardService } from './services/client-board.service';
     CommonModule,
     AppRoutingModule,
     FormsModule,
-    
-    NgApexchartsModule,NgChartsModule
+    NgApexchartsModule,
+    NgChartsModule,
+    NgxPaginationModule
   ],
   providers: [ClientBoardService],
   bootstrap: [AppComponent]

@@ -10,10 +10,12 @@ import { ClientService } from 'src/app/services/client.service';
 })
 export class UpdateClientComponent implements OnInit {
   client: Client = new Client();
+  postService: any;
   constructor(private clientservice: ClientService, private navigation: Router) {
 
   }
   ngOnInit(): void {
+  
     if (window.history.state['client']) this.client = window.history.state['client']
     else this.navigation.navigate(['/def/clients']);
 
@@ -33,4 +35,5 @@ export class UpdateClientComponent implements OnInit {
         }
       );
   }
+ 
 }

@@ -38,4 +38,5 @@ export class ClientService {
       responseType: 'text',
     });
   }
+
 }

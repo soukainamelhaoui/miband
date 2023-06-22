@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ClientService } from '../services/client.service';
 import { Router } from "@angular/router";
 import { Client } from '../models/client.model';
-
+import { PostService } from 'src/app/post.service';
 @Component({
   selector: 'app-client-list',
   templateUrl: './client-list.component.html',
@@ -14,10 +14,11 @@ export class ClientListComponent implements OnInit {
   constructor(
     private clientService: ClientService,
     private router: Router,
-
+    private postService: PostService
   ) { }
 
   ngOnInit() {
+    this.fetchPosts();
     this.clientService.getClients().subscribe(
       (response: any) => {
         this.clients = response;
@@ -53,4 +54,32 @@ export class ClientListComponent implements OnInit {
       }
     );
   }
+   //add pagination
+   POSTS: any;
+   page: number = 1;
+   count: number = 0;
+   tableSize: number = 7;
+   tableSizes: any = [3, 6, 9, 12];
+ 
+ 
+   fetchPosts(): void {
+     this.postService.getAllPosts().subscribe(
+       (response: any) => {
+         this.POSTS = response;
+         console.log(response);
+       },
+       (error: any) => {
+         console.log(error);
+       }
+     );
+   }
+   onTableDataChange(event: any) {
+     this.page = event;
+     this.fetchPosts();
+   }
+   onTableSizeChange(event: any): void {
+     this.tableSize = event.target.value;
+     this.page = 1;
+     this.fetchPosts();
+   }
 }

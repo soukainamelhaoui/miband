@@ -29,7 +29,7 @@ export class HeartbeatChartComponent implements OnInit {
 
 
 
-   
+
 
   constructor(private heartbeatService: HeartbeatService, private ngZone: NgZone) {
   }
@@ -38,80 +38,80 @@ export class HeartbeatChartComponent implements OnInit {
     this.createChart();
     this.startRealTimeUpdates();
 
-  //   this.heartbeatService.getHeartbeats().subscribe(
-  //     (response: Object) => { // Adjust the type to Object
-  //       this.heartbeats = response as any[]; // Cast the response to any[] if necessary
+    //   this.heartbeatService.getHeartbeats().subscribe(
+    //     (response: Object) => { // Adjust the type to Object
+    //       this.heartbeats = response as any[]; // Cast the response to any[] if necessary
 
-  //       // Generate charts based on unique client IDs
-  //       const uniqueIDs = Array.from(new Set(this.heartbeats.map(heartbeat => heartbeat.id)));
+    //       // Generate charts based on unique client IDs
+    //       const uniqueIDs = Array.from(new Set(this.heartbeats.map(heartbeat => heartbeat.id)));
 
-  //       uniqueIDs.forEach(id => {
-  //         const dataForID = this.heartbeats.find(heartbeat => heartbeat.id === id);
+    //       uniqueIDs.forEach(id => {
+    //         const dataForID = this.heartbeats.find(heartbeat => heartbeat.id === id);
 
-  //         const chartData = [
-  //           { x: "data1", y: dataForID.data1 },
-  //           { x: "data2", y: dataForID.data2 },
-  //           { x: "data3", y: dataForID.data3 },
-  //           { x: "data4", y: dataForID.data4 }
-  //         ];
+    //         const chartData = [
+    //           { x: "data1", y: dataForID.data1 },
+    //           { x: "data2", y: dataForID.data2 },
+    //           { x: "data3", y: dataForID.data3 },
+    //           { x: "data4", y: dataForID.data4 }
+    //         ];
 
-  //         // Filter out NaN values
-  //         const filteredChartData = chartData.filter(dataPoint => dataPoint.y !== "");
+    //         // Filter out NaN values
+    //         const filteredChartData = chartData.filter(dataPoint => dataPoint.y !== "");
 
-  //         const chartOption = {
-  //           series: [
-  //             {
-  //               name: "Heartbeat",
-  //               data: filteredChartData
-  //             }
-  //           ],
-  //           chart: {
-  //             height: 350,
-  //             type: "line",
-  //             zoom: {
-  //               enabled: false
-  //             }
-  //           },
-  //           dataLabels: {
-  //             enabled: false
-  //           },
-  //           stroke: {
-  //             curve: "straight",
-  //             width: 2
-  //           },
-  //           title: {
-  //             text: `Client ID: ${id}`,
-  //             align: "left"
-  //           },
-  //           grid: {
-  //             row: {
-  //               colors: ["#f3f3f3", "transparent"],
-  //               opacity: 0.5
-  //             }
-  //           },
-  //           xaxis: {
-  //             categories: ["data1", "data2", "data3", "data4"]
-  //           }
-  //         };
+    //         const chartOption = {
+    //           series: [
+    //             {
+    //               name: "Heartbeat",
+    //               data: filteredChartData
+    //             }
+    //           ],
+    //           chart: {
+    //             height: 350,
+    //             type: "line",
+    //             zoom: {
+    //               enabled: false
+    //             }
+    //           },
+    //           dataLabels: {
+    //             enabled: false
+    //           },
+    //           stroke: {
+    //             curve: "straight",
+    //             width: 2
+    //           },
+    //           title: {
+    //             text: `Client ID: ${id}`,
+    //             align: "left"
+    //           },
+    //           grid: {
+    //             row: {
+    //               colors: ["#f3f3f3", "transparent"],
+    //               opacity: 0.5
+    //             }
+    //           },
+    //           xaxis: {
+    //             categories: ["data1", "data2", "data3", "data4"]
+    //           }
+    //         };
 
 
-  //         this.chartOptions.push(chartOption);
-  //       });
-  //     },
-  //     (error) => {
-  //       console.log('Error retrieving heartbeats:', error);
-  //     }
-  //   );
-   }
-   
-   createChart() {
-    const clientId = 101; // Replace with the desired client ID
-  
+    //         this.chartOptions.push(chartOption);
+    //       });
+    //     },
+    //     (error) => {
+    //       console.log('Error retrieving heartbeats:', error);
+    //     }
+    //   );
+  }
+
+  createChart() {
+    const clientId = 102; // Replace with the desired client ID
+
     this.heartbeatService.getClientHeartbeats(clientId).subscribe(
       (response: any[]) => {
         const labels = response.map((heartbeat: any) => heartbeat.date_prelevement).reverse();
         const data = response.map((heartbeat: any) => heartbeat.data1).reverse();
-  
+
         // Create the chart using the extracted data
         this.chart = new Chart("MyChart", {
           type: 'line',
@@ -138,12 +138,12 @@ export class HeartbeatChartComponent implements OnInit {
 
   startRealTimeUpdates() {
     const clientId = 101; // Replace with the desired client ID
-  
+
     // Clear any existing subscription
     if (this.dataSubscription) {
       this.dataSubscription.unsubscribe();
     }
-  
+
     // Start the real-time update process
     this.dataSubscription = timer(0, this.updateInterval).pipe(
       switchMap(() => this.heartbeatService.getClientHeartbeats(clientId))
@@ -151,7 +151,7 @@ export class HeartbeatChartComponent implements OnInit {
       (response: any[]) => {
         const labels = response.map((heartbeat: any) => heartbeat.date_prelevement);
         const data = response.map((heartbeat: any) => heartbeat.data1);
-  
+
         // Update the chart with new data
         this.ngZone.run(() => {
           this.chart.data.labels = labels;
@@ -164,8 +164,8 @@ export class HeartbeatChartComponent implements OnInit {
       }
     );
   }
-  
-  
-  
-   
+
+
+
+
 }
