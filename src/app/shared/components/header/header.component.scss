@@ -3,10 +3,11 @@ ul li{
 }
 .navbar-logo {
     height: 210px;
-    padding-top: 5px 0px 5px 0px;
+    // padding: 0px 0px 5px 0px;
+    margin-bottom: 30px;
     margin-left: 0px;
-    
-}
+    background-size: cover; /* Ajuste la taille de l'image pour couvrir le conteneur */
+    background-position: center bottom;}
 .header{
     background-color: #FFFF;
 

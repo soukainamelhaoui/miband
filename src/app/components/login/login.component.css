@@ -2,7 +2,11 @@
 *{
     box-sizing: border-box;
 }
-
+.img{ 
+    width: 150px;
+    height: auto;
+    
+}
 .body{
     font-family: 'Poppins';
     display: flex;
@@ -38,10 +42,10 @@
   }
   
   .login > img{
-      width: 120px;
+      /* width: 120px; */
       aspect-ratio: 1/1;
       object-fit: cover;
-      border-radius: 50%;
+      /* border-radius: 50%; */
       margin-bottom: 20px;
   }
 
