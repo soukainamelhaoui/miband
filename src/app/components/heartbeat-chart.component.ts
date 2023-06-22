@@ -69,8 +69,8 @@ export class HeartbeatChartComponent implements OnInit {
               {
                 label: "Heartbeat",
                 data: data,
-                 borderColor:'orange',
-      backgroundColor: 'orange',
+                 borderColor:'red',
+      backgroundColor: 'red',
               }
             ]
           },
