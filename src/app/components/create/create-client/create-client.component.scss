@@ -1,55 +1,54 @@
 .form-container {
-    display: flex;
-    flex-direction: column;
-  }
-  
+  display: flex;
+  flex-direction: column;
+}
+
 form {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  
-  label {
-    flex-basis: 45%;
-    margin-bottom: 10px;
-  }
-  
-  input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  button[type="submit"] {
-    margin-top: 10px;
-    align-self: flex-end;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  
-  button[type="submit"]:hover {
-    background-color: #0056b3;
-  }
-  input::placeholder {
-    color: #999;
-    font-style: italic;
-  }
-  
-  textarea::placeholder {
-    color: #999;
-    font-style: italic;
-  }
-  
-  /* Exemple de style supplémentaire pour le champ email */
-  input[type="email"]::placeholder {
-    color: #999;
-    font-style: italic;
-    font-size: 14px;
-  }
-  
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+label {
+  flex-basis: 45%;
+  margin-bottom: 10px;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button[type="submit"] {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 20%; /* Make the button occupy the full width */
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+input::placeholder {
+  color: #999;
+  font-style: italic;
+}
+
+textarea::placeholder {
+  color: #999;
+  font-style: italic;
+}
+
+/* Example of additional style for the email field */
+input[type="email"]::placeholder {
+  color: #999;
+  font-style: italic;
+  font-size: 14px;
+}

@@ -16,9 +16,11 @@ export class ClientListComponent implements OnInit {
     private router: Router,
     private postService: PostService
   ) { }
-
-  ngOnInit() {
+  ngAfterViewInit() {
     this.fetchPosts();
+  }
+  ngOnInit() {
+    // this.fetchPosts();
     this.clientService.getClients().subscribe(
       (response: any) => {
         this.clients = response;
