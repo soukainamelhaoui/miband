@@ -13,11 +13,13 @@ declare var alert: any;
 })
 export class CreateClientComponent {
   client: Client = new Client();
+  returnButtonClicked = false;
+
   constructor(private http: HttpClient, private clientservice: ClientService,private router: Router) { }
  
   saveClient() {
     console.log(this.client);
-
+    if (!this.returnButtonClicked){
     this.clientservice.postClient(this.client)
       .subscribe(
         response => {
@@ -32,5 +34,10 @@ export class CreateClientComponent {
       this.client=new Client;
 
   }
+}
+returnClicked() {
+  this.returnButtonClicked = true;
+  this.router.navigate(["/def/clients"])
+}
   
 }

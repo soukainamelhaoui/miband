@@ -9,15 +9,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let client of clients
-     let post of POSTS
-      | paginate
-      : {
-          itemsPerPage: tableSize,
-          currentPage: page,
-          totalItems: count
-        };
-    let i = index">
+      <tr *ngFor="let client of clients | slice:(page-1)*tableSize:page*tableSize; let i = index">
         <td>
           <a [routerLink]="['/def/client', client.id]" class="client-link">{{ client.nom }}</a>
         </td>
@@ -32,8 +24,17 @@
     </tbody>
   </table>
   <div class="d-flex justify-content-center">
-    <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
-    </pagination-controls>
+    <ul class="pagination">
+      <li class="page-item" [ngClass]="{ 'disabled': page === 1 }">
+        <a class="page-link" (click)="onPageChange(page - 1)">Previous</a>
+      </li>
+      <li class="page-item" *ngFor="let item of getPageNumbers()">
+        <a class="page-link" [ngClass]="{ 'active': item === page }" (click)="onPageChange(item)">{{ item }}</a>
+      </li>
+      <li class="page-item" [ngClass]="{ 'disabled': page === getPageNumbers().length }">
+        <a class="page-link" (click)="onPageChange(page + 1)">Next</a>
+      </li>
+    </ul>
   </div>
   <div>
     <button (click)="AjouterClient()" class="btn btn-add-profile">Add Profile</button>

@@ -34,6 +34,10 @@
             <input type="email" [(ngModel)]="client.mail" name="mail" required>
         </label>
         <br>
-        <button type="submit">Submit</button>
+        <div class="button-SR">
+            <button type="submit">Submit</button>
+            <button type="return" (click)="returnClicked()" >Return</button>
+        </div>
     </form>
+    
 </div>

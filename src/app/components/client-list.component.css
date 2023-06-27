@@ -94,3 +94,43 @@ h2 {
 .table td:last-child {
   padding-right: 0;
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+.page-item {
+  margin: 0 5px;
+}
+
+.page-item.disabled .page-link {
+  color: #999999;
+  cursor: not-allowed;
+}
+
+.page-item.disabled .page-link:hover {
+  text-decoration: none;
+}
+
+.page-item.active .page-link {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #ffffff;
+}
+
+.page-link {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  background-color: #ffffff;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.page-link:hover {
+  background-color: #e9ecef;
+}

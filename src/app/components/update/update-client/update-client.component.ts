@@ -9,9 +9,12 @@ declare var alert: any;
   styleUrls: ['./update-client.component.scss']
 })
 export class UpdateClientComponent implements OnInit {
+
   client: Client = new Client();
   postService: any;
-  constructor(private clientservice: ClientService, private navigation: Router) {
+  returnButtonClicked = false;
+  
+  constructor(private clientservice: ClientService, private navigation: Router,private router: Router) {
 
   }
   ngOnInit(): void {
@@ -25,6 +28,7 @@ export class UpdateClientComponent implements OnInit {
   }
   saveClient() {
     console.log(this.client);
+    if (!this.returnButtonClicked){
     this.clientservice.updateClient(this.client)
       .subscribe(
         response => {
@@ -37,5 +41,10 @@ export class UpdateClientComponent implements OnInit {
         }
       );
   }
- 
+}
+returnClicked() {
+  this.returnButtonClicked = true;
+  this.router.navigate(["/def/clients"])
+}
+
 }

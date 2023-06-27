@@ -28,6 +28,8 @@ import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { HeartbeatChartComponent } from './components/heartbeat-chart.component';
 
 import { NgxPaginationModule } from 'ngx-pagination';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,8 +39,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     LoginComponent,
     UpdateClientComponent,
     DashboardComponent,
-    HeartbeatChartComponent
-
+    HeartbeatChartComponent,
 
   ],
   imports: [
