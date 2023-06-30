@@ -62,20 +62,21 @@ h2 {
   display: flex;
   justify-content: center;
 }
-.btn-add-profile, 
+
+.btn-add-profile,
 .btn-primary,
 .btn-danger {
   margin-right: 10px;
 }
 
-.btn-add-profile:hover ,
+.btn-add-profile:hover,
 .btn-primary:hover,
 .btn-danger:hover {
   background-color: #0056b3;
   transform: scale(1.1);
 }
 
-.btn-add-profile:active ,
+.btn-add-profile:active,
 .btn-primary:active,
 .btn-danger:active {
   background-color: #004080;

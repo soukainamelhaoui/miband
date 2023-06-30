@@ -33,7 +33,7 @@ export class ClientListComponent implements OnInit {
       }
     );
   }
-//********start pagination********* //
+  //********start pagination********* //
   onPageChange(page: number) {
     this.page = page;
   }
@@ -42,7 +42,7 @@ export class ClientListComponent implements OnInit {
     const pageCount = Math.ceil(this.clients.length / this.tableSize);
     return Array(pageCount).fill(0).map((x, i) => i + 1);
   }
-//********end pagination********* //
+  //********end pagination********* //
   updateClient(clientId: number) {
     // Logic for updating the client with the given clientId
     this.client = this.clients.find((cli: Client) => {
@@ -53,29 +53,14 @@ export class ClientListComponent implements OnInit {
       this.router.navigateByUrl('/def/UpdateClient', { state: { client: this.client } });
     }
   }
-
- /* deleteClient(clientId: number) {
-    this.clientService.deleteClientById(clientId).subscribe(
-      (res) => {
-        this.clients = this.clients.filter((cli: Client) => {
-          return cli.id != clientId;
-        });
-        console.log('Client deleted successfully');
-
-      },
-      (error) => {
-        console.log('Error deleting client:', error);
-      }
-    );
-  }*/
   //ajouter profile
   AjouterClient() {
     this.router.navigate(["/def/CreateClient"])
   }
 
-deleteClient(clientId: number) {
- 
-      this.clientService.deleteClientById(clientId)
+  deleteClient(clientId: number) {
+
+    this.clientService.deleteClientById(clientId)
       .subscribe(
         (response) => {
           this.clients = this.clients.filter((cli: Client) => {
@@ -89,7 +74,5 @@ deleteClient(clientId: number) {
           alert('delete failed : ' + error);
         }
       );
-  
-}
-
+  }
 }

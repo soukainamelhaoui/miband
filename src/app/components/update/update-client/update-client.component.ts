@@ -46,5 +46,4 @@ returnClicked() {
   this.returnButtonClicked = true;
   this.router.navigate(["/def/clients"])
 }
-
 }
