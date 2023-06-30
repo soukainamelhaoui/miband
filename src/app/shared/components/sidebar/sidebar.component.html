@@ -1,34 +1,34 @@
-<div class="side"><mat-nav-list>
+<div class="side"><mat-nav-list >
 
     <div class="profile-card">
-      <img src="assets/sa-removebg.png" alt="img">
-      <div class="header">
-                   </div>
+      <img src="assets/31.png" alt="img">
+      <h2 style="color:#e3e3e3;margin-left:5vw;">Welcome back  !</h2>
     </div>
     <a mat-list-item routerLinkActive="list-item-active" (click)="getdDashboard()" *ngIf="isUser()">
-        <mat-icon>dashboard</mat-icon>
-        <!-- /
-        <mat-icon>bookmark</mat-icon> -->
+        <mat-icon >dashboard</mat-icon>
 
-        Dashboard
+        <span style="color: #fff;"> Dashboard</span>
       </a>
     <a mat-list-item routerLinkActive="list-item-active" (click)="getclients()" *ngIf="isAdmin()">
         <mat-icon>account_circle</mat-icon>
-        Clients
+        <span style="color: #fff;"> Clients</span>
       </a>
     <a mat-list-item routerLinkActive="list-item-active" (click)="getprofile()" *ngIf="isUser()">
         <mat-icon>account_circle</mat-icon>
-        Profile
+        <span style="color: #fff;"> Profile</span>
+
       </a>
     
     <a mat-list-item routerLinkActive="list-item-active" (click)="getheartbeats()" *ngIf="isAdmin()">
         <mat-icon>favorite_outline</mat-icon>
-        heartbeats
+        
+        <span style="color: #fff;"> Heartbeats</span>
+
       </a>
       <a class="logOut" mat-list-item routerLinkActive="list-item-active" (click)="logout()">
         <mat-icon>exit_to_app</mat-icon>
-        Log out
+        <span style="color: #fff;">Log out </span>
+        
       </a>
-
 
 </mat-nav-list></div>
