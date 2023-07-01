@@ -29,7 +29,7 @@ button[type="submit"] {
   border-radius: 20px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  background-color: #007bff;
+  background-color: #b0c034;
   color: #fff;
 }
 
@@ -41,7 +41,7 @@ button[type="return"] {
   border-radius: 20px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  background-color: #007bff;
+  background-color: #b0c034;
   color: #fff;
 }
 
@@ -51,16 +51,17 @@ button[type="return"] {
   align-items: center;
 }
 
+
 .button-SR .btn {
   margin-right: 10px;
 }
 
 button[type="submit"]:hover {
-  background-color: #0056b3;
+  background-color: #556301;
 }
 
 button[type="return"]:hover {
-  background-color: #0056b3;
+  background-color: #556301;
 }
 
 input::placeholder {

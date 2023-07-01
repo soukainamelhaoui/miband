@@ -25,12 +25,19 @@
 }
 
 .photo-placeholder {
+  position: relative;
   width: 150px;
   height: 150px;
-  background-color: #ddd;
   border-radius: 50%;
-  position: relative;
+  overflow: hidden;
 }
+
+.photo-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 
 .photo-placeholder::before {
   content: "";

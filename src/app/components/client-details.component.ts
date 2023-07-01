@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ClientService } from '../services/client.service';
+
 @Component({
   selector: 'app-client-detail',
   templateUrl: './client-details.component.html',
@@ -8,6 +9,7 @@ import { ClientService } from '../services/client.service';
 })
 export class ClientDetailComponent implements OnInit {
   client: any;
+  
   constructor(
     private route: ActivatedRoute,
     private clientService: ClientService

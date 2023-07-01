@@ -7,6 +7,7 @@ export class Client {
     adresse: string;
     mail: string;
 
+
     constructor(
         id: number = 0,
         mac: string = '',
@@ -14,7 +15,8 @@ export class Client {
         prenom: string = '',
         tel: string = '',
         adresse: string = '',
-        mail: string = ''
+        mail: string = '',
+
     ) {
         this.id = id;
         this.mac = mac;
@@ -23,5 +25,6 @@ export class Client {
         this.tel = tel;
         this.adresse = adresse;
         this.mail = mail;
+
     }
 }
