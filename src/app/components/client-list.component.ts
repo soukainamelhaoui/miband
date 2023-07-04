@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ClientService } from '../services/client.service';
 import { Router } from "@angular/router";
 import { Client } from '../models/client.model';
-
+import { ClientBoardService } from '../services/client-board.service';
 @Component({
   selector: 'app-client-list',
   templateUrl: './client-list.component.html',
@@ -16,7 +16,9 @@ export class ClientListComponent implements OnInit {
 
   constructor(
     private clientService: ClientService,
-    private router: Router
+    private router: Router,
+    private clientBoardService: ClientBoardService
+
   ) { }
 
   ngOnInit() {
@@ -56,6 +58,10 @@ export class ClientListComponent implements OnInit {
   //ajouter profile
   AjouterClient() {
     this.router.navigate(["/def/CreateClient"])
+  }
+  setClientId(clientId: number) {
+    // Set the client ID in the client board service
+    this.clientBoardService.setClientId(clientId.toString());
   }
 
   deleteClient(clientId: number) {

@@ -3,6 +3,7 @@ import { ClientBoardService } from 'src/app/services/client-board.service';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { User } from 'src/app/user';
 import { Router } from '@angular/router';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -33,37 +34,40 @@ export class DashboardComponent implements OnInit {
     this.mac = this.clientBoard.mac;
     this.id = this.clientBoard.id;
 
-    this.http
-  .get<any[]>(`http://154.49.137.28:8080/getHeartbeatsByClient/${this.clientBoard.id}`)
-  .subscribe(
-    (response: any[]) => {
-      if (response.length > 0) {
-        // Sort the response array by date in descending order
-        response.sort((a, b) => new Date(b.date_prelevement).getTime() - new Date(a.date_prelevement).getTime());
-        
-        const latestHeartbeat = response[0]; // Get the first element (latest heartbeat)
+    // Initial data retrieval
 
-        console.log('Latest Heartbeat:', latestHeartbeat);
+    // Update the data every 5 seconds
+    interval(4500).subscribe(() => {
+      this.http
+        .get<any[]>(`http://154.49.137.28:8080/getHeartbeatsByClient/${this.clientBoard.id}`)
+        .subscribe(
+          (response: any[]) => {
+            if (response.length > 0) {
+              // Sort the response array by date in descending order
+              response.sort((a, b) => new Date(b.date_prelevement).getTime() - new Date(a.date_prelevement).getTime());
+              
+              const latestHeartbeat = response[0]; // Get the first element (latest heartbeat)
 
-        this.data1 = latestHeartbeat.data1;
-        console.log("data1", this.data1);
+              console.log('Latest Heartbeat:', latestHeartbeat);
 
-        this.data2 = latestHeartbeat.data2;
-        console.log("data2", this.data2);
+              this.data1 = latestHeartbeat.data1;
+              console.log("data1", this.data1);
 
-        this.data3 = latestHeartbeat.data3;
-        this.datePrelevement = latestHeartbeat.date_prelevement;
+              this.data2 = latestHeartbeat.data2;
+              console.log("data2", this.data2);
 
-        this.router.navigate(['def']);
-      } else {
-        console.log('No heartbeats found');
-      }
-    },
-    (error) => {
-      console.error('Error retrieving heartbeats:', error);
-    }
-  );
+              this.data3 = latestHeartbeat.data3;
+              this.datePrelevement = latestHeartbeat.date_prelevement;
 
+              this.router.navigate(['def']);
+            } else {
+              console.log('No heartbeats found');
+            }
+          },
+          (error) => {
+            console.error('Error retrieving heartbeats:', error);
+          }
+        );
+    });
   }
 }
-    

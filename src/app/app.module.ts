@@ -40,6 +40,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     UpdateClientComponent,
     DashboardComponent,
     HeartbeatChartComponent,
+    
 
   ],
   imports: [

@@ -13,10 +13,10 @@
     <tbody>
       <tr *ngFor="let client of clients | slice:(page-1)*tableSize:page*tableSize; let i = index">
         <td>
-          <a [routerLink]="['/def/client', client.id]" class="client-link">{{ client.nom }}</a>
+          <a [routerLink]="['/def/client', client.id]" (click)="setClientId(client.id)" class="client-link">{{ client.nom }}</a>
         </td>
         <td>
-          <a [routerLink]="['/def/client', client.id]" class="client-link">{{ client.prenom }}</a>
+          <a [routerLink]="['/def/client', client.id]" (click)="setClientId(client.id)" class="client-link">{{ client.prenom }}</a>
         </td>
         <td>
           <button (click)="updateClient(client.id)" class="btn btn-primary">Update</button>
