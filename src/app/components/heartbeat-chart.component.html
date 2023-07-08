@@ -1,10 +1,13 @@
-<!-- heartbeat-chart.component.html -->
-<h2 style="padding: 10px;">Heartbeat Chart</h2>
-<!-- 
-<div *ngFor="let chartOption of chartOptions">
-  <apx-chart [series]="chartOption.series" [chart]="chartOption.chart" [xaxis]="chartOption.xaxis"
-             [title]="chartOption.title"></apx-chart>
-</div>
- -->
+<div>
+  <h2>Heartbeat Chart</h2>
 
- <canvas id="MyChart"></canvas>
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" (dateChange)="dateChanged($event)" placeholder="Select Date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <div>
+    <canvas id="MyChart"></canvas>
+  </div>
+</div>

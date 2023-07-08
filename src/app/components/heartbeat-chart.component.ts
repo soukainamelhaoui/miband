@@ -5,6 +5,7 @@ import { NgZone } from '@angular/core';
 import { Subscription, timer } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { ClientBoardService } from 'src/app/services/client-board.service';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-heartbeat-chart',
@@ -14,51 +15,64 @@ export class HeartbeatChartComponent implements OnInit {
   public chartOptions: any[] = [];
   public heartbeats: any[] = [];
   public id!: string;
+  public selectedDate: Date = new Date(); // Default selected date
+  public availableDates: string[] = []; // Array of unique dates from the data
 
-
-  public chart: any;
+  public chart: any = null;
   updateInterval: number = 3000; // Update interval in milliseconds
   dataSubscription: Subscription = new Subscription;
-  // public lineChartOptions: any = {
-  //   responsive: true,
-  //   scales: {
-  //     x: {
-  //       display: false
-  //     },
-  //     y: {
-  //       display: false
-  //     }
-  //   }
-  // };
 
-
-
-
-
-  constructor(private heartbeatService: HeartbeatService, private ngZone: NgZone,private clientBoard: ClientBoardService) {
+  constructor(private heartbeatService: HeartbeatService, private ngZone: NgZone, private clientBoard: ClientBoardService) {
   }
 
   ngOnInit() {
     this.clientBoard.loadFromLocalStorage();
     this.id = this.clientBoard.id;
-    this.createChart();
+    this.getUniqueDates(); // Get the unique dates from the data
     this.startRealTimeUpdates();
+  }
 
-    }
-   
-   createChart() {
+  getUniqueDates() {
     const clientId = parseInt(this.id); // Replace with the desired client ID
-    console.log("clientId",clientId);
+
     this.heartbeatService.getClientHeartbeats(clientId).subscribe(
       (response: any[]) => {
-        // Sort the response by date_prelevement in descending order
-        const sortedResponse = response.sort((a, b) => new Date(b.date_prelevement).getTime() - new Date(a.date_prelevement).getTime());
+        // Extract unique dates from the response
+        const uniqueDates = [...new Set(response.map((heartbeat: any) => heartbeat.date_prelevement.split(' ')[0]))];
+
+        // Sort the dates in descending order
+        this.availableDates = uniqueDates.sort((a, b) => new Date(b).getTime() - new Date(a).getTime());
+
+        // Select the latest date by default
+        this.selectedDate = new Date(this.availableDates[0]);
+
+        // Create the initial chart
+        this.createChart();
+      },
+      (error: any) => {
+        console.error('Error fetching chart data:', error);
+      }
+    );
+  }
+
+  createChart() {
+    const clientId = parseInt(this.id); // Replace with the desired client ID
   
-        // Get the last 20 records from the sorted response
-        const last20Records = sortedResponse.slice(0, 60);
+    this.heartbeatService.getClientHeartbeats(clientId).subscribe(
+      (response: any[]) => {
+        // Filter the response to include only the selected date
+        const filteredResponse = response.filter((heartbeat: any) => heartbeat.date_prelevement.includes(this.selectedDate.toISOString().split('T')[0]));
   
-        const labels = last20Records.map((heartbeat: any) => heartbeat.date_prelevement).reverse();
-        const data = last20Records.map((heartbeat: any) => heartbeat.data1).reverse();
+        // Sort the response by date_prelevement in ascending order
+        const sortedResponse = filteredResponse.sort((a, b) => new Date(a.date_prelevement).getTime() - new Date(b.date_prelevement).getTime());
+  
+        const labels = sortedResponse.map((heartbeat: any) => heartbeat.date_prelevement.split(' ')[1]).reverse();
+        const data = sortedResponse.map((heartbeat: any) => heartbeat.data1).reverse();
+  
+        // Clear previous chart data
+        if (this.chart) {
+          this.chart.destroy();
+        }
   
         // Create the chart using the extracted data
         this.chart = new Chart("MyChart", {
@@ -69,8 +83,8 @@ export class HeartbeatChartComponent implements OnInit {
               {
                 label: "Heartbeat",
                 data: data,
-                 borderColor:'red',
-      backgroundColor: 'red',
+                borderColor: 'red',
+                backgroundColor: 'red',
               }
             ]
           },
@@ -89,10 +103,10 @@ export class HeartbeatChartComponent implements OnInit {
       }
     );
   }
-
+  
   startRealTimeUpdates() {
     const clientId = parseInt(this.id); // Replace with the desired client ID
-  
+
     // Clear any existing subscription
     if (this.dataSubscription) {
       this.dataSubscription.unsubscribe();
@@ -103,15 +117,15 @@ export class HeartbeatChartComponent implements OnInit {
       switchMap(() => this.heartbeatService.getClientHeartbeats(clientId))
     ).subscribe(
       (response: any[]) => {
-        // Sort the response by date_prelevement in descending order
-        const sortedResponse = response.sort((a, b) => new Date(b.date_prelevement).getTime() - new Date(a.date_prelevement).getTime());
-  
-        // Get the last 20 records from the sorted response
-        const last20Records = sortedResponse.slice(0, 60);
-  
-        const labels = last20Records.map((heartbeat: any) => heartbeat.date_prelevement).reverse();
-        const data = last20Records.map((heartbeat: any) => heartbeat.data1).reverse();
-  
+        // Filter the response to include only the selected date
+        const filteredResponse = response.filter((heartbeat: any) => heartbeat.date_prelevement.includes(this.selectedDate.toISOString().split('T')[0]));
+
+        // Sort the response by date_prelevement in ascending order
+        const sortedResponse = filteredResponse.sort((a, b) => new Date(a.date_prelevement).getTime() - new Date(b.date_prelevement).getTime());
+
+        const labels = sortedResponse.map((heartbeat: any) => heartbeat.date_prelevement.split(' ')[1]).reverse();
+        const data = sortedResponse.map((heartbeat: any) => heartbeat.data1).reverse();
+
         // Update the chart with new data
         this.ngZone.run(() => {
           this.chart.data.labels = labels;
@@ -124,7 +138,18 @@ export class HeartbeatChartComponent implements OnInit {
       }
     );
   }
-  
-  
-   
+
+  dateChanged(event: MatDatepickerInputEvent<Date>) {
+    const selectedDate: Date | null = event.value as Date | null;
+
+    if (selectedDate) {
+      // Set the selected date to the beginning of the day
+      selectedDate.setHours(0, 0, 0, 0);
+      this.selectedDate = selectedDate;
+
+      // Update the chart with the selected date
+      this.createChart();
+    }
+  }
+
 }

@@ -26,6 +26,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { HeartbeatChartComponent } from './components/heartbeat-chart.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 import { NgxPaginationModule } from 'ngx-pagination';
 
@@ -58,7 +62,11 @@ import { NgxPaginationModule } from 'ngx-pagination';
     MatGridListModule,
     MatCardModule,
     MatSnackBarModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   exports: [
     DashboardComponent,
