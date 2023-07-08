@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   public id!:string
 
   user:User = new User();
-  
+
   constructor(private http: HttpClient,private router: Router,private ClientBoard: ClientBoardService,private authService: AuthService,    private snackBar: MatSnackBar
     ){
 
@@ -32,14 +32,14 @@ export class LoginComponent implements OnInit {
       this.authService.setIsAdmin(true); // Set admin status based on the provided mac
       this.router.navigate(['/def']);
     } else {
-    this.http.get<User[]>(`http://154.49.137.28:8080/listClients`).subscribe(
+    this.http.get<User[]>(`http://localhost:8088/listClients`).subscribe(
       (response: any[]) => {
         const client = response.find((c) => c.mail === this.user.email && c.mac === this.user.mac);
         if (client) {
           // Client found, handle successful sign-in
           this.authService.setIsAdmin(false); // Set admin status as false for non-admin users
           console.log('Client found:', client);
-          
+
           this.ClientBoard.nom = client.nom;
           this.ClientBoard.prenom = client.prenom;
           this.ClientBoard.mac = client.mac;

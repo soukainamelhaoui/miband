@@ -5,7 +5,7 @@ import json
 from datetime import datetime
 
 def send_heartbeat():
-    url = "http://154.49.137.28:8080/addHeartbeatClient"
+    url = "http://localhost:8088/addHeartbeatClient"
     current_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]
     data = {
         "mac": "ad:12:19:df",

@@ -6,7 +6,7 @@ import { Observable, mergeMap, of } from 'rxjs';
   providedIn: 'root'
 })
 export class HeartbeatService {
-  private apiUrl = 'http://154.49.137.28:8080';
+  private apiUrl = 'http://localhost:8088';
 
   constructor(private http: HttpClient) { }
 
@@ -21,16 +21,16 @@ export class HeartbeatService {
   getClientHeartbeats(clientId: number): Observable<any[]> {
     const pageSize = 100; // Set a suitable page size
     const url = `${this.apiUrl}/getHeartbeatsByClient/${clientId}`;
-    
+
     // Recursive function to fetch all pages
     const fetchPages = (pageNo: number, allData: any[]): Observable<any[]> => {
       const pageUrl = `${url}?pageNo=${pageNo}&pageSize=${pageSize}`;
-      
+
       return this.http.get(pageUrl).pipe(
         mergeMap((response: any) => {
           const newData = response || [];
           const updatedData = [...allData, ...newData];
-          
+
           if (newData.length === pageSize) {
             // Continue fetching the next page
             return fetchPages(pageNo + 1, updatedData);
@@ -41,9 +41,9 @@ export class HeartbeatService {
         })
       );
     };
-    
+
     // Start fetching the pages
     return fetchPages(0, []);
   }
-  
+
 }

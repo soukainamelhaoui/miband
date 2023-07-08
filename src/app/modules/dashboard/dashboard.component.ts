@@ -39,13 +39,13 @@ export class DashboardComponent implements OnInit {
     // Update the data every 5 seconds
     interval(4500).subscribe(() => {
       this.http
-        .get<any[]>(`http://154.49.137.28:8080/getHeartbeatsByClient/${this.clientBoard.id}`)
+        .get<any[]>(`http://localhost:8088/getHeartbeatsByClient/${this.clientBoard.id}`)
         .subscribe(
           (response: any[]) => {
             if (response.length > 0) {
               // Sort the response array by date in descending order
               response.sort((a, b) => new Date(b.date_prelevement).getTime() - new Date(a.date_prelevement).getTime());
-              
+
               const latestHeartbeat = response[0]; // Get the first element (latest heartbeat)
 
               console.log('Latest Heartbeat:', latestHeartbeat);
