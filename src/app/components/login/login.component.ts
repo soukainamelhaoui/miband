@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       this.authService.setIsAdmin(true); // Set admin status based on the provided mac
       this.router.navigate(['/def']);
     } else {
-    this.http.get<User[]>(`http://localhost:8088/listClients`).subscribe(
+    this.http.get<User[]>(`http://16.171.143.229:7777/listClients`).subscribe(
       (response: any[]) => {
         const client = response.find((c) => c.mail === this.user.email && c.mac === this.user.mac);
         if (client) {

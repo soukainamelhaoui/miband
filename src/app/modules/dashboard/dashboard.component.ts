@@ -39,7 +39,7 @@ export class DashboardComponent implements OnInit {
     // Update the data every 5 seconds
     interval(4500).subscribe(() => {
       this.http
-        .get<any[]>(`http://localhost:8088/getHeartbeatsByClient/${this.clientBoard.id}`)
+        .get<any[]>(`http://16.171.143.229:7777/getHeartbeatsByClient/${this.clientBoard.id}`)
         .subscribe(
           (response: any[]) => {
             if (response.length > 0) {

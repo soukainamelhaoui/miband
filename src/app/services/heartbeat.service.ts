@@ -6,7 +6,7 @@ import { Observable, mergeMap, of } from 'rxjs';
   providedIn: 'root'
 })
 export class HeartbeatService {
-  private apiUrl = 'http://localhost:8088';
+  private apiUrl = 'http://16.171.143.229:7777';
 
   constructor(private http: HttpClient) { }
 
