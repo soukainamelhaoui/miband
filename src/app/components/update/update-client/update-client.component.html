@@ -34,6 +34,26 @@
             <input type="email" [(ngModel)]="client.mail" name="mail" required>
         </label>
         <br>
+        <label>
+            blood:
+            <input type="text" [(ngModel)]="client.blood" name="blood" required >
+          </label> 
+          <br>
+          <label>
+            sex:
+            <input type="text" [(ngModel)]="client.sex" name="sex" required >
+          </label> 
+          <br>
+          <label>
+            age:
+            <input type="number" [(ngModel)]="client.age" name="age" required >
+          </label>
+          <br>
+          <label>
+            weight:
+            <input type="number" [(ngModel)]="client.weight" name="weight" required >
+          </label>
+        <br>
         <div class="button-SR">
             <button type="submit">Submit</button>
             <button type="return" (click)="returnClicked()">Return</button>

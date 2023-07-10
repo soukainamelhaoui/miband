@@ -6,6 +6,10 @@ export class Client {
     tel: string;
     adresse: string;
     mail: string;
+    blood: string;
+    sex:string;
+    age:number;
+    weight:number;
 
 
     constructor(
@@ -16,7 +20,10 @@ export class Client {
         tel: string = '',
         adresse: string = '',
         mail: string = '',
-
+        blood: string='',
+        sex:string='',
+        age:number=0,
+        weight:number=0,
     ) {
         this.id = id;
         this.mac = mac;
@@ -25,6 +32,10 @@ export class Client {
         this.tel = tel;
         this.adresse = adresse;
         this.mail = mail;
+        this.blood = blood;
+        this.sex = sex;
+        this.age = age;
+        this.weight = weight;
 
     }
 }

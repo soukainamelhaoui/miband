@@ -25,6 +25,22 @@
       Email:
       <input type="email" [(ngModel)]="client.mail" name="mail" required placeholder="Ex: user@example.com">
     </label>  
+    <label>
+      blood:
+      <input type="text" [(ngModel)]="client.blood" name="blood" required placeholder=" ">
+    </label> 
+    <label>
+      sex:
+      <input type="text" [(ngModel)]="client.sex" name="sex" required placeholder=" female or male">
+    </label> 
+    <label>
+      age:
+      <input type="number" [(ngModel)]="client.age" name="age" required placeholder=" ">
+    </label>
+    <label>
+      weight:
+      <input type="number" [(ngModel)]="client.weight" name="weight" required placeholder=" ">
+    </label>
     <div class="button-SR">
       <button type="submit">Submit</button>
       <button type="return" (click)="returnClicked()">Return</button>
