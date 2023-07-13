@@ -3,6 +3,8 @@ import { ClientService } from '../services/client.service';
 import { Router } from "@angular/router";
 import { Client } from '../models/client.model';
 import { ClientBoardService } from '../services/client-board.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 @Component({
   selector: 'app-client-list',
   templateUrl: './client-list.component.html',
@@ -17,10 +19,8 @@ export class ClientListComponent implements OnInit {
   constructor(
     private clientService: ClientService,
     private router: Router,
-    private clientBoardService: ClientBoardService
-
-  ) { }
-
+    private clientBoardService: ClientBoardService,
+    private snackBar: MatSnackBar) {}
   ngOnInit() {
     this.getClients();
   }
@@ -73,12 +73,21 @@ export class ClientListComponent implements OnInit {
             return cli.id != clientId;
           });
           console.log('Enregistrement du client réussi :', response);
-          alert('successfully delete');
+          this.showErrorMessage('successfully delete');
+
         },
         error => {
           console.error('Erreur lors de l\'enregistrement du client :', error);
-          alert('delete failed : ' + error);
+          this.showErrorMessage('delete failed : ' + error);
+
+
         }
       );
+  }
+  showErrorMessage(message: string) {
+    this.snackBar.open(message, 'Close', {
+      duration: 3000,
+      verticalPosition: 'top'
+    });
   }
 }

@@ -11,16 +11,19 @@ import { LoginComponent } from './components/login/login.component';
 import { UpdateClientComponent } from './components/update/update-client/update-client.component';
 import { AdminGuard } from 'src/app/services/admin.guard';
 import { UserGuard } from 'src/app/services/user.guard';
+import { AuthGuard } from './services/auth.guard';
+
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' }, // Redirect to the login page
   { path: 'login', component: LoginComponent }, // Add the login route
     {
       path: 'def',
       component: DafaultComponent,
-      canActivate: [UserGuard], // UserGuard allows access to all child routes for non-admin users
+  
+      canActivate: [AuthGuard,UserGuard], // UserGuard allows access to all child routes for non-admin users
       children: [
         { path: '', redirectTo: 'Dashboard', pathMatch: 'full' },
-        { path: 'Dashboard', component: DashboardComponent },
+        { path: 'Dashboard', component: DashboardComponent ,canActivate: [AuthGuard] },
         // { path: 'client/:id', component: ClientDetailComponent }
         // Add other routes for user-only pages here
       ]
@@ -28,7 +31,7 @@ const routes: Routes = [
     {
       path: 'def',
       component: DafaultComponent,
-      canActivate: [AdminGuard], // AdminGuard allows access to all child routes for admin users
+      canActivate: [AuthGuard,AdminGuard], // AdminGuard allows access to all child routes for admin users
       children: [
         { path: 'clients', component: ClientListComponent },
         { path: 'CreateClient', component: CreateClientComponent },

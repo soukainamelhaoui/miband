@@ -3,7 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ClientService } from 'src/app/services/client.service';
 import { Client } from 'src/app/models/client.model';
 import { Router } from '@angular/router';
-declare var alert: any;
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 
 @Component({
@@ -15,7 +16,7 @@ export class CreateClientComponent {
   client: Client = new Client();
   returnButtonClicked = false;
 
-  constructor(private http: HttpClient, private clientservice: ClientService, private router: Router) { }
+  constructor(private http: HttpClient, private clientservice: ClientService, private router: Router, private snackBar: MatSnackBar) {}
 
   saveClient() {
     console.log(this.client);
@@ -24,11 +25,13 @@ export class CreateClientComponent {
         .subscribe(
           response => {
             console.log('Enregistrement du client réussi :', response);
-            alert('Successful profile registration');
+            this.showErrorMessage('Successful profile registration');
+
           },
           error => {
             console.error('Erreur lors de l\'enregistrement du client :', error);
-            alert('Error when saving profile : ' + error);
+            this.showErrorMessage('Error when saving profile : ' + error);
+        
           }
         );
       this.client = new Client;
@@ -39,5 +42,11 @@ export class CreateClientComponent {
   returnClicked() {
     this.returnButtonClicked = true;
     this.router.navigate(["/def/clients"])
+  }
+  showErrorMessage(message: string) {
+    this.snackBar.open(message, 'Close', {
+      duration: 3000,
+      verticalPosition: 'top'
+    });
   }
 }

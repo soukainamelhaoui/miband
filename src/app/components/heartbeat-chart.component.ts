@@ -45,7 +45,7 @@ export class HeartbeatChartComponent implements OnInit {
 
         // Select the latest date by default
         this.selectedDate = new Date(this.availableDates[0]);
-        this.selectedDate.setHours(0, 0, 0, 0);
+        // this.selectedDate.setHours(0, 0, 0, 0);
         // Create the initial chart
         this.createChart();
       },
@@ -56,20 +56,25 @@ export class HeartbeatChartComponent implements OnInit {
   }
 
   createChart() {
-    const clientId = parseInt(this.id, 10); // Replace with the desired client ID
+    const clientId = parseInt(this.id); // Replace with the desired client ID
   
     this.heartbeatService.getClientHeartbeats(clientId).subscribe(
       (response: any[]) => {
         // Filter the response to include only the selected date
         const filteredResponse = response.filter((heartbeat: any) => {
-          const heartbeatDate = heartbeat.date_prelevement.split(' ')[0];
-          return heartbeatDate === this.selectedDate.toISOString().split('T')[0];
+          const heartbeatDate = new Date(heartbeat.date_prelevement).setHours(0, 0, 0, 0);
+          const selectedDate = new Date(this.selectedDate).setHours(0, 0, 0, 0);
+          return heartbeatDate === selectedDate;
         });
-        
-        // Sort the response by date_prelevement in ascending order
-        const sortedResponse = filteredResponse.sort((a, b) => new Date(a.date_prelevement).getTime() - new Date(b.date_prelevement).getTime());
   
-        const labels = sortedResponse.map((heartbeat: any) => heartbeat.date_prelevement.split(' ')[1]).reverse();
+        // Sort the response by date_prelevement in ascending order
+        const sortedResponse = filteredResponse.sort((a, b) =>
+          a.date_prelevement.localeCompare(b.date_prelevement)
+        );
+  
+        const labels = sortedResponse.map((heartbeat: any) =>
+          heartbeat.date_prelevement.split(' ')[1]
+        ).reverse();
         const data = sortedResponse.map((heartbeat: any) => heartbeat.data1).reverse();
   
         // Clear previous chart data
@@ -78,28 +83,34 @@ export class HeartbeatChartComponent implements OnInit {
         }
   
         // Create the chart using the extracted data
-        this.chart = new Chart("MyChart", {
-          type: 'line',
-          data: {
-            labels: labels,
-            datasets: [
-              {
-                label: "Heartbeat",
-                data: data,
-                borderColor: 'red',
-                backgroundColor: 'red',
-              }
-            ]
-          },
-          options: {
-            aspectRatio: 8,
-            scales: {
-              x: {
-                display: false // Hide the x-axis labels
-              }
-            }
+        const canvas = document.getElementById("MyChart") as HTMLCanvasElement;
+        if (canvas) {
+          const ctx = canvas.getContext("2d");
+          if (ctx) {
+            this.chart = new Chart(ctx, {
+              type: 'line',
+              data: {
+                labels: labels,
+                datasets: [
+                  {
+                    label: 'Heartbeat',
+                    data: data,
+                    borderColor: 'red',
+                    backgroundColor: 'red',
+                  },
+                ],
+              },
+              options: {
+                aspectRatio: 8,
+                scales: {
+                  x: {
+                    display: false, // Hide the x-axis labels
+                  },
+                },
+              },
+            });
           }
-        });
+        }
       },
       (error: any) => {
         console.error('Error fetching chart data:', error);
@@ -108,7 +119,7 @@ export class HeartbeatChartComponent implements OnInit {
   }
   
   startRealTimeUpdates() {
-    const clientId = parseInt(this.id, 10); // Replace with the desired client ID
+    const clientId = parseInt(this.id); // Replace with the desired client ID
   
     // Clear any existing subscription
     if (this.dataSubscription) {
@@ -116,77 +127,43 @@ export class HeartbeatChartComponent implements OnInit {
     }
   
     // Start the real-time update process
-    this.dataSubscription = timer(0, this.updateInterval)
-      .pipe(
-        switchMap(() => this.heartbeatService.getClientHeartbeats(clientId))
-      )
-      .subscribe(
-        (response: any[]) => {
-          // Filter the response to include only the selected date
-          const filteredResponse = response.filter(
-            (heartbeat: any) =>
-              heartbeat.date_prelevement.includes(
-                this.selectedDate.toISOString().split("T")[0]
-              )
-          );
+    this.dataSubscription = timer(0, this.updateInterval).pipe(
+      switchMap(() => this.heartbeatService.getClientHeartbeats(clientId))
+    ).subscribe(
+      (response: any[]) => {
+        // Filter the response to include only the selected date
+        const filteredResponse = response.filter((heartbeat: any) => {
+          const heartbeatDate = new Date(heartbeat.date_prelevement).setHours(0, 0, 0, 0);
+          const selectedDate = new Date(this.selectedDate).setHours(0, 0, 0, 0);
+          return heartbeatDate === selectedDate;
+        });
   
-          // Sort the response by date_prelevement in ascending order
-          const sortedResponse = filteredResponse.sort(
-            (a, b) =>
-              new Date(a.date_prelevement).getTime() -
-              new Date(b.date_prelevement).getTime()
-          );
+        // Sort the response by date_prelevement in ascending order
+        const sortedResponse = filteredResponse.sort((a, b) =>
+          a.date_prelevement.localeCompare(b.date_prelevement)
+        );
   
-          const labels = sortedResponse
-            .map((heartbeat: any) => heartbeat.date_prelevement.split(" ")[1])
-            .reverse();
-          const data = sortedResponse
-            .map((heartbeat: any) => heartbeat.data1)
-            .reverse();
+        const labels = sortedResponse.map((heartbeat: any) =>
+          heartbeat.date_prelevement.split(' ')[1]
+        ).reverse();
+        const data = sortedResponse.map((heartbeat: any) => heartbeat.data1).reverse();
   
-          // Update the chart with new data
-          this.ngZone.run(() => {
-            if (this.chart) {
-              this.chart.data.labels = labels;
-              this.chart.data.datasets[0].data = data;
-              this.chart.update();
-            } else {
-              const canvas = document.getElementById("MyChart") as HTMLCanvasElement;
-              if (canvas) {
-                const ctx = canvas.getContext("2d");
-                if (ctx) {
-                  this.chart = new Chart(ctx, {
-                    type: "line",
-                    data: {
-                      labels: labels,
-                      datasets: [
-                        {
-                          label: "Heartbeat",
-                          data: data,
-                          borderColor: "red",
-                          backgroundColor: "red",
-                        },
-                      ],
-                    },
-                    options: {
-                      aspectRatio: 8,
-                      scales: {
-                        x: {
-                          display: false, // Hide the x-axis labels
-                        },
-                      },
-                    },
-                  });
-                }
-              }
-            }
-          });
-        },
-        (error: any) => {
-          console.error("Error fetching real-time chart data:", error);
-        }
-      );
+        // Update the chart with new data
+        this.ngZone.run(() => {
+          if (this.chart) {
+            this.chart.data.labels = labels;
+            this.chart.data.datasets[0].data = data;
+            this.chart.update();
+          }
+        });
+      },
+      (error: any) => {
+        console.error('Error fetching real-time chart data:', error);
+      }
+    );
   }
+  
+  
   
   dateChanged(event: MatDatepickerInputEvent<Date>) {
     const selectedDate: Date | null = event.value as Date | null;
