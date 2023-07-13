@@ -31,6 +31,8 @@ export class LoginComponent implements OnInit {
       // Admin login
       this.authService.setIsAdmin(true); // Set admin status based on the provided mac
       this.router.navigate(['/def']);
+      this.authService.setIsLoggedIn(true);
+
     } else {
     this.http.get<User[]>(`http://16.171.143.229:7777/listClients`).subscribe(
       (response: any[]) => {
@@ -48,6 +50,8 @@ export class LoginComponent implements OnInit {
           this.ClientBoard.saveToLocalStorage(); // Enregistrer les données dans le stockage local
           this.router.navigate(['/def/Dashboard']);
           // Perform further actions or redirect the user
+          this.authService.setIsLoggedIn(true);
+
         } else {
           // Client not found, handle sign-in failure
           console.log('Client not found');

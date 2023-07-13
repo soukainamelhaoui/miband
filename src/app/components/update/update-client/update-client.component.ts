@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Client } from 'src/app/models/client.model';
 import { ClientService } from 'src/app/services/client.service';
-declare var alert: any;
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-update-client',
   templateUrl: './update-client.component.html',
@@ -14,9 +14,7 @@ export class UpdateClientComponent implements OnInit {
   postService: any;
   returnButtonClicked = false;
   
-  constructor(private clientservice: ClientService, private navigation: Router,private router: Router) {
-
-  }
+  constructor(private clientservice: ClientService, private navigation: Router,private router: Router,private snackBar: MatSnackBar) {}
   ngOnInit(): void {
   
     if (window.history.state['client']) this.client = window.history.state['client']
@@ -33,11 +31,13 @@ export class UpdateClientComponent implements OnInit {
       .subscribe(
         response => {
           console.log('Enregistrement du client réussi :', response);
-          alert('successfully updated');
+          this.showErrorMessage('successfully updated');
+
         },
         error => {
           console.error('Erreur lors de l\'enregistrement du client :', error);
-          alert('update failed : ' + error);
+          this.showErrorMessage('update failed : ' + error);
+
         }
       );
   }
@@ -45,5 +45,11 @@ export class UpdateClientComponent implements OnInit {
 returnClicked() {
   this.returnButtonClicked = true;
   this.router.navigate(["/def/clients"])
+}
+showErrorMessage(message: string) {
+  this.snackBar.open(message, 'Close', {
+    duration: 3000,
+    verticalPosition: 'top'
+  });
 }
 }

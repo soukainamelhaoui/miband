@@ -4,15 +4,20 @@ import random
 import json
 from datetime import datetime
 
-def send_heartbeat():
-    url = "http://localhost:7777/addHeartbeatClient"
+def send_heartbeat(mac):
+    url = "http://16.171.143.229:7777/addHeartbeatClient"
     current_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]
     data = {
-        "mac": "ad:12:19:df",
-      "data1": str(random.randint(49, 90)),#HEARTBEAT
+        "mac": mac,
+        "data1": str(random.randint(49, 100)),#HEARTBEAT
         "data2": str(random.randint(35, 45)),#TEMPERATURE
         "data3": str(random.randint(80, 160)),
         "data4": "",
+
+
+
+
+        
         "date_prelevement": current_datetime
     }
 
@@ -25,5 +30,17 @@ def send_heartbeat():
         print(f"Failed to send heartbeat. Error: {response.text}")
 
 while True:
-    send_heartbeat()
+    # Récupérer la liste des clients depuis votre API
+    clients_url = "http://16.171.143.229:7777/listClients"
+    response = requests.get(clients_url)
+    
+    if response.status_code == 200:
+        clients = response.json()
+        
+        for client in clients:
+            mac = client["mac"]
+            send_heartbeat(mac)
+    else:
+        print(f"Failed to retrieve client list. Error: {response.text}")
+    
     time.sleep(5)
